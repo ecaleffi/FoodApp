@@ -1,0 +1,22 @@
+[% USE HTML %]
+<h1>Your Order History</h1>
+[% IF orders.count %]
+    <table border="0" cellpadding="3" cellspacing="5">
+        <tr>
+            <th align="left">Order#</th>
+            <th align="right">Created</th>
+        </tr>
+    [% WHILE (order = orders.next) %]
+        <tr>
+            <td align="left">
+                <a href="[% c.uri_for('/order/view', order.id, '') %]">[% HTML.escape(order.number) %]</a>
+            </td>
+            <td>
+                [% HTML.escape(order.updated) %]
+            </td>
+        </tr>
+    [% END %]
+    </table>
+[% ELSE %]
+    <p>You have no orders.</p>
+[% END %]

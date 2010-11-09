@@ -1,0 +1,4 @@
+order/view:
+  id:
+    REGEX: Il campo id e' in un formato scorretto.
+

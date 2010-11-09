@@ -1,0 +1,21 @@
+cart/save:
+  name:
+    NOT_BLANK: Il campo del nome non puo' essere vuoto.
+    LENGTH: Il campo del nome deve contenere da 1 a 50 caratteri.
+cart/update:
+  id:
+    REGEX: Il campo id e' in un formato scorretto.
+  quantity:
+    NOT_BLANK: Il campo della quantita' non puo' essere vuoto.
+    UINT: Il campo della quantita' deve essere un numero positivo.
+cart/delete:
+  id:
+    REGEX: Il campo id e' in un formato scorretto.
+cart/destroy:
+  id:
+    REGEX: Il campo id e' in un formato scorretto.
+cart/restore:
+  id:
+    REGEX: Il campo id e' in un formato scorretto.
+  mode:
+    BETWEEN: Il campo mode deve essere tra 1 e 3.

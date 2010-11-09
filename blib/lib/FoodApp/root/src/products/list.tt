@@ -1,0 +1,17 @@
+<table cellspacing="15">
+	<tr><th>Descrizione</th><th>Prezzo</th><th>Scadenza</th><th>Links</th></tr>
+	[% # Visualizza ogni cibo in una riga della tabella %]
+		[% FOREACH product IN products -%]
+	<tr>
+		<td>[% product.description %]</td>
+		<td>[% product.price %]</td>
+		<td>[% product.duration %]</td>
+		<td> 
+			[% IF c.user_exists() && c.check_user_roles('admin') %]
+			<a href="[% c.uri_for(c.controller('product').action_for('delete'), [food.id] ) %]">Elimina</a>
+			[% END %]
+		</td>
+	</tr>
+[% END -%]
+</table>
+<br/>

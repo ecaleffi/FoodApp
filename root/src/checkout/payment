@@ -1,0 +1,37 @@
+[% USE HTML %]
+<h1>Informazioni sul Pagamento</h1>
+[% INCLUDE checkout/errors %]
+<form action="[% c.uri_for('/checkout/payment/') %]" method="POST">
+    <table border="0" cellpadding="3" cellspacing="5">
+        <tr>
+            <td align="right">Nome sulla Carta di Credito:</td>
+            <td align="left"><input type="text" name="ccname" value=""></td>
+        </tr>
+        <tr>
+            <td align="right">Tipo Carta di Credito:</td>
+            <td align="left">
+                <select name="cctype">
+                    <option>Visa</option>
+                    <option>Mastercard</option>
+                    <option>American Express</option>
+                    <option>Discover</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">Numero Carta di Credito:</td>
+            <td align="left"><input type="text" name="ccn" value=""></td>
+        </tr>
+        <tr>
+            <td align="right">Scadenza Carta di Credito:</td>
+            <td align="left"><input type="text" size="3" name="ccm" maxlength="2" value=""> / <input type="text" size="3" name="ccy" maxlength="2" value=""></td>
+        </tr>
+        <tr>
+            <td align="right">Codice di sicurezza:</td>
+            <td align="left"><input type="text" name="ccvn" value="" maxlength="4" size="5"></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="right"><input type="submit" value="Completa Ordine"></td>
+        </tr>
+    </table>
+</form>

@@ -1,0 +1,52 @@
+checkout/view:
+  - id
+  -
+    -
+      - REGEX
+      - !!perl/regexp (?i-xsm:^[a-f0-9]{8}-([a-f0-9]{4}-){3}[a-f0-9]{12}$)
+checkout/billing:
+  - billtofirstname
+  - [ ['NOT_BLANK'], ['LENGTH', 1, 25] ]
+  - billtolastname
+  - [ ['NOT_BLANK'], ['LENGTH', 1, 25] ]
+  - billtoaddress1
+  - [ ['NOT_BLANK'], ['LENGTH', 1, 50] ]
+  - billtocity
+  - [ ['NOT_BLANK'], ['LENGTH', 1, 25] ]
+  - billtostate
+  - [ ['NOT_BLANK'], ['LENGTH', 1, 25] ]
+  - billtozip
+  - [ ['NOT_BLANK'], ['LENGTH', 1, 10] ]
+  - billtocountry
+  -  [ ['NOT_BLANK'], ['LENGTH', 1, 25] ]
+  - billtoemail
+  - [ ['NOT_BLANK'], ['LENGTH', 1, 50] ]
+  - shiptofirstname
+  - [ ['NOT_BLANK'], ['LENGTH', 1, 25] ]
+  - shiptolastname
+  - [ ['NOT_BLANK'], ['LENGTH', 1, 25] ]
+  - shiptoaddress1
+  - [ ['NOT_BLANK'], ['LENGTH', 1, 50] ]
+  - shiptocity
+  - [ ['NOT_BLANK'], ['LENGTH', 1, 25] ]
+  - shiptostate
+  - [ ['NOT_BLANK'], ['LENGTH', 1, 25] ]
+  - shiptozip
+  - [ ['NOT_BLANK'], ['LENGTH', 1, 10] ]
+  - shiptocountry
+  -  [ ['NOT_BLANK'], ['LENGTH', 1, 25] ]
+  - shiptoemail
+  - [ ['NOT_BLANK'], ['LENGTH', 1, 50] ]
+checkout/payment:
+  - ccname
+  - [ ['NOT_BLANK'] ]
+  - cctype
+  - [ ['NOT_BLANK'] ]
+  - ccn
+  - [ ['NOT_BLANK'], ['LENGTH', 12, 16], ['UINT'] ]
+  - ccm
+  - [ ['NOT_BLANK'], ['BETWEEN', 1, 12] ]
+  - ccy
+  - [ ['NOT_BLANK'], ['LENGTH', 2], ['UINT'] ]
+  - ccvn
+  - [ ['NOT_BLANK'], ['LENGTH', 3, 4], ['UINT'] ]

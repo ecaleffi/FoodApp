@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<title>Tutti gli utenti con i loro ruoli</title>
+	</head>
+	
+	<body>
+		<table cellspacing="15">
+			<tr><th>UserId</th><th>Nome</th><th>Cognome</th><th>Ruolo</th><th>Profilo</th></tr>
+			[% WHILE (user = users_rs.next) %]
+				<tr valign="center">
+					<td>[% user.id %]</td>
+					<td>[% user.name %]</td>
+					<td>[% user.surname %]</td>
+					<td>
+						[% FOREACH role = user.have_right_to %]
+							<li>[% role.role.description %]</li>
+						[% END %]
+					</td>
+					<td>
+						<a href="[% c.uri_for(c.controller('people').action_for('profile'), [user.id])%]">Vedi Profilo</a>
+					</td>
+				</tr>
+			[% END %]
+		</table>
+	</body>
+</html>

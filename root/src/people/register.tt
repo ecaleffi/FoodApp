@@ -1,0 +1,44 @@
+[% IF ! c.user_exists %]
+	<form action="[% c.uri_for('/people/register') %]"
+		method="post" accept-charset="utf-8">
+		<table cellspacing="15">
+			<tr>
+				<td><label for="name">Nome:</label></td>
+				<td><input type="text" name="name" value="" id="name"/></td>
+				<td><font color="red"> *obbligatorio </font></td>
+			</tr>
+			<tr>
+				<td><label for="surname">Cognome:</label></td>
+				<td><input type="text" name="surname" value="" id="surname"/></td>
+				<td><font color="red"> *obbligatorio </font></td>
+			</tr>
+			<tr>
+				<td><label for="password">Password</label></td>
+				<td><input type="password" name="password" value="" id="password"/></td>
+				<td><font color="red"> *obbligatorio </p></td>
+			</tr>
+			<tr>
+				<td><label for="address">Indirizzo:</label></td>
+				<td><input type="text" name="address" value="" id="address"/></td>
+			</tr>
+			<tr>
+				<td><label for="city">Città:</label></td>
+				<td><input type="text" name="city" value="" id="city"/></td>
+			</tr>
+			<tr>
+				<td><label for="state">Regione:</label></td>
+				<td><input type="text" name="state" value="" id="state"/></td>
+			</tr>
+			<tr>
+				<td><label for="post_code">Codice Postale:</label></td>
+				<td><input type="text" name="post_code" value="" id="post_code"/></td>
+			</tr>
+			<tr>
+				<td><p><input type="submit" value="Registrati &rarr;"></p></td>
+			</tr>
+		</table>
+		
+	</form>
+[% ELSE %]
+<p>Hai già effettuato il login.</p>
+[% END %]

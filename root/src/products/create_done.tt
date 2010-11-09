@@ -1,0 +1,3 @@
+<h3>Il prodotto è stato inserito correttamente</h3>
+
+<a href="[% c.uri_for('/product/list') %]">Ritorna alla lista dei prodotti</a>

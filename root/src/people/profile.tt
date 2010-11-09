@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<title>Profilo di [% user.name %] [% user.surname%]</title>
+	</head>
+	
+	<body>
+		<ul>
+			<li>
+				<b>Nome:</b>        [% user.name %]
+			</li>
+			<br/>
+			<li>
+				<b>Cognome:</b>		[% user.surname %]
+			</li>
+			<br/>
+			<li>
+				<b>Indirizzo:</b>   [% user.address %]
+			</li>
+			<br/>
+			<li>
+				<b>Città:</b>		[% user.city %]
+			</li>
+			<br/>
+			<li>
+				<b>Regione:</b>		[% user.province_state %]
+			</li>
+			<br/>
+			<li>
+				<b>Codice postale:</b>	[% user.postal_code %]
+			</li>
+			<br/>
+			<li>
+				<b>I miei ordini: </b> <ul>
+					[% FOREACH order = user.handel_orders %]
+						<li><a href="[% c.uri_for(('/order/view'), order.order_number) %]">[% order.order_number %]</a></li>
+					[% END %]</ul>
+			</li>
+			<br/>
+		</ul>
+		<hr/>
+					
+		<br/>
+		[% IF c.user_exists() && c.check_user_roles('admin') %]
+		<a href="[%-
+			c.uri_for(c.controller('people').action_for('delete'), [ user.id ]) %]">
+			Cancella utente</a>
+		[% ELSE %]
+		<a href="[%-
+			c.uri_for(c.controller('people').action_for('delete'), [ user.id ]) %]">
+			Cancellami dal sito</a>
+		[% END %]
+			
+	</body>
+</html>

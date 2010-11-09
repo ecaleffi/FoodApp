@@ -1,0 +1,124 @@
+[% USE HTML %]
+<h1>Informazioni di Fatturazione/Spedizione</h1>
+[% INCLUDE checkout/errors %]
+<form action="[% c.uri_for('/checkout/billing/') %]" method="POST">
+    <table border="0" cellpadding="3" cellspacing="5">
+        <tr>
+            <th colspan="2" align="left">Fatturazione</th>
+            <th width="25"></th>
+            <th colspan="2" align="left">Spedizione</th>
+        </tr>
+        <tr>
+            <td colspan="5" height="5">&nbsp;</td>
+        </tr>
+        <tr>
+            <td align="right">Nome:</td>
+            <td align="left"><input type="text" name="billtofirstname" value="[% HTML.escape(order.billtofirstname) %]" tabindex="1"></td>
+            <td></td>
+            <td align="right">Nome:</td>
+            <td align="left"><input type="text" name="shiptofirstname" value="[% HTML.escape(order.shiptofirstname) %]" tabindex="14"></td>
+        </tr>
+        <tr>
+            <td align="right">Cognome:</td>
+            <td align="left"><input type="text" name="billtolastname" value="[% HTML.escape(order.billtolastname) %]" tabindex="2"></td>
+            <td></td>
+            <td align="right">Cognome:</td>
+            <td align="left"><input type="text" name="shiptolastname" value="[% HTML.escape(order.shiptolastname) %]" tabindex="15"></td>
+        </tr>
+        <tr>
+            <td colspan="5" height="5">&nbsp;</td>
+        </tr>
+        <tr>
+            <td align="right">Indirizzo:</td>
+            <td align="left"><input type="text" name="billtoaddress1" value="[% HTML.escape(order.billtoaddress1) %]" tabindex="3"></td>
+            <td></td>
+            <td align="right">Indirizzo:</td>
+            <td align="left"><input type="text" name="shiptoaddress1" value="[% HTML.escape(order.shiptoaddress1) %]" tabindex="16"></td>
+        </tr>
+        <tr>
+            <td align="right"></td>
+            <td align="left"><input type="text" name="billtoaddress2" value="[% HTML.escape(order.billtoaddress2) %]" tabindex="4"></td>
+            <td></td>
+            <td align="right"></td>
+            <td align="left"><input type="text" name="shiptoaddress2" value="[% HTML.escape(order.shiptoaddress2) %]" tabindex="17"></td>
+        </tr>
+        <tr>
+            <td align="right"></td>
+            <td align="left"><input type="text" name="billtoaddress3" value="[% HTML.escape(order.billtoaddress3) %]" tabindex="5"></td>
+            <td></td>
+            <td align="right"></td>
+            <td align="left"><input type="text" name="shiptoaddress3" value="[% HTML.escape(order.shiptoaddress3) %]" tabindex="18"></td>
+        </tr>
+        <tr>
+            <td align="right">Città:</td>
+            <td align="left"><input type="text" name="billtocity" value="[% HTML.escape(order.billtocity) %]" tabindex="6"></td>
+            <td></td>
+            <td align="right">Città:</td>
+            <td align="left"><input type="text" name="shiptocity" value="[% HTML.escape(order.shiptocity) %]" tabindex="19"></td>
+        </tr>
+        <tr>
+            <td align="right">Regione:</td>
+            <td align="left"><input type="text" name="billtostate" value="[% HTML.escape(order.billtostate) %]" tabindex="7"></td>
+            <td></td>
+            <td align="right">Regione:</td>
+            <td align="left"><input type="text" name="shiptostate" value="[% HTML.escape(order.shiptostate) %]" tabindex="20"></td>
+        </tr>
+        <tr>
+            <td align="right">CAP:</td>
+            <td align="left"><input type="text" name="billtozip" value="[% HTML.escape(order.billtozip) %]" tabindex="8"></td>
+            <td></td>
+            <td align="right">CAP:</td>
+            <td align="left"><input type="text" name="shiptozip" value="[% HTML.escape(order.shiptozip) %]" tabindex="21"></td>
+        </tr>
+        <tr>
+            <td align="right">Stato:</td>
+            <td align="left"><input type="text" name="billtocountry" value="[% HTML.escape(order.billtocountry) %]" tabindex="9"></td>
+            <td></td>
+            <td align="right">Stato:</td>
+            <td align="left"><input type="text" name="shiptocountry" value="[% HTML.escape(order.shiptocountry) %]" tabindex="22"></td>
+        </tr>
+        <tr>
+            <td align="right">Telefono Diurno:</td>
+            <td align="left"><input type="text" name="billtodayphone" value="[% HTML.escape(order.billtodayphone) %]" tabindex="10"></td>
+            <td></td>
+            <td align="right">Telefono Diurno:</td>
+            <td align="left"><input type="text" name="shiptodayphone" value="[% HTML.escape(order.shiptodayphone) %]" tabindex="23"></td>
+        </tr>
+        <tr>
+            <td align="right">Telefono Notturno:</td>
+            <td align="left"><input type="text" name="billtonightphone" value="[% HTML.escape(order.billtonightphone) %]" tabindex="11"></td>
+            <td></td>
+            <td align="right">Telefono Notturno:</td>
+            <td align="left"><input type="text" name="shiptonightphone" value="[% HTML.escape(order.shiptonightphone) %]" tabindex="24"></td>
+        </tr>
+        <tr>
+            <td align="right">Fax:</td>
+            <td align="left"><input type="text" name="billtofax" value="[% HTML.escape(order.billtofax) %]" tabindex="12"></td>
+            <td></td>
+            <td align="right">Fax:</td>
+            <td align="left"><input type="text" name="shiptofax" value="[% HTML.escape(order.shiptofax) %]" tabindex="25"></td>
+        </tr>
+        <tr>
+            <td align="right">Email:</td>
+            <td align="left"><input type="text" name="billtoemail" value="[% HTML.escape(order.billtoemail) %]" tabindex="13"></td>
+            <td></td>
+            <td align="right">Email:</td>
+            <td align="left"><input type="text" name="shiptoemail" value="[% HTML.escape(order.shiptoemail) %]" tabindex="26"></td>
+        </tr>
+        <tr>
+            <td colspan="5" height="10">&nbsp;</td>
+        </tr>
+        <tr>
+            <td align="right" valign="top">Commenti:</td>
+            <td colspan="4" valign="top">
+                <textarea name="comments" cols="45" rows="10" tabindex="27">[% HTML.escape(order.comments) %]</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5" height="10">&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="5" align="right"><input type="submit" value="Continua" tabindex="28"></td>
+        </tr>
+    </table>
+</form>

@@ -1,0 +1,35 @@
+<table cellspacing="15">
+	<tr><th>Nome</th><th>Descrizione</th><th>Prezzo (€/Kg)</th><th>Scadenza</th><th>Links</th>
+	[% IF c.user_exists() && c.check_user_roles('admin') %]
+		<th>Elimina</th>
+	[% END %]
+	</tr>
+	[% # Visualizza ogni cibo in una riga della tabella %]
+		[% FOREACH product IN products -%]
+	<tr>
+		<td>[% product.name %]</td>
+		<td>[% product.description %]</td>
+		<td>[% product.price %]</td>
+		<td>[% product.duration %]</td>
+		<td> 
+			[% IF c.user_exists() && c.check_user_roles('user') %]
+			<form action="/cart/add/" method="POST">
+				<p>
+    			<input type="hidden" name="sku" value="[% product.name %]" />
+    			<input type="hidden" name="description" value="[% product.description %]" />
+    			<input type="hidden" name="price" value="[% product.price %]" />
+    			<input type="text" name="quantity" value="1" size="3" />
+    			<input type="submit" value="Aggiungi al carrello" />
+          		</p>
+			</form>
+			[% END %]
+		</td>
+		[% IF c.user_exists() && c.check_user_roles('admin') %]
+		<td>
+			<a href="[% c.uri_for(c.controller('product').action_for('delete'), [product.id] ) %]">Elimina</a>
+		</td>
+		[% END %]
+	</tr>
+[% END -%]
+</table>
+<br/>

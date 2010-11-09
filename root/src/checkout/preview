@@ -1,0 +1,168 @@
+[% USE HTML %]
+<h1>Anteprima dell'Ordine</h1>
+<table border="0" cellpadding="3" cellspacing="5">
+    <tr>
+        <th colspan="2" align="left">Fatturazione</th>
+        <th width="50"></th>
+        <th colspan="2" align="left">Spedizione</th>
+    </tr>
+    <tr>
+        <td colspan="5" height="5">&nbsp;</td>
+    </tr>
+    <tr>
+        <td align="right">Nome:</td>
+        <td align="left">[% HTML.escape(order.billtofirstname) %]</td>
+        <td></td>
+        <td align="right">Nome:</td>
+        <td align="left">[% HTML.escape(order.shiptofirstname) %]</td>
+    </tr>
+    <tr>
+        <td align="right">Cognome:</td>
+        <td align="left">[% HTML.escape(order.billtolastname) %]</td>
+        <td></td>
+        <td align="right">Cognome:</td>
+        <td align="left">[% HTML.escape(order.shiptolastname) %]</td>
+    </tr>
+    <tr>
+        <td colspan="5" height="5">&nbsp;</td>
+    </tr>
+    <tr>
+        <td align="right">Indirizzo:</td>
+        <td align="left">[% HTML.escape(order.billtoaddress1) %]</td>
+        <td></td>
+        <td align="right">Indirizzo:</td>
+        <td align="left">[% HTML.escape(order.shiptoaddress1) %]</td>
+    </tr>
+    <tr>
+        <td align="right"></td>
+        <td align="left">[% HTML.escape(order.billtoaddress2) %]</td>
+        <td></td>
+        <td align="right"></td>
+        <td align="left">[% HTML.escape(order.shiptoaddress2) %]</td>
+    </tr>
+    <tr>
+        <td align="right"></td>
+        <td align="left">[% HTML.escape(order.billtoaddress3) %]</td>
+        <td></td>
+        <td align="right"></td>
+        <td align="left">[% HTML.escape(order.shiptoaddress3) %]</td>
+    </tr>
+    <tr>
+        <td align="right">Città:</td>
+        <td align="left">[% HTML.escape(order.billtocity) %]</td>
+        <td></td>
+        <td align="right">Città:</td>
+        <td align="left">[% HTML.escape(order.shiptocity) %]</td>
+    </tr>
+    <tr>
+        <td align="right">Regione:</td>
+        <td align="left">[% HTML.escape(order.billtostate) %]</td>
+        <td></td>
+        <td align="right">Regione:</td>
+        <td align="left">[% HTML.escape(order.shiptostate) %]</td>
+    </tr>
+    <tr>
+        <td align="right">CAP:</td>
+        <td align="left">[% HTML.escape(order.billtozip) %]</td>
+        <td></td>
+        <td align="right">CAP:</td>
+        <td align="left">[% HTML.escape(order.shiptozip) %]</td>
+    </tr>
+    <tr>
+        <td align="right">Stato:</td>
+        <td align="left">[% HTML.escape(order.billtocountry) %]</td>
+        <td></td>
+        <td align="right">Stato:</td>
+        <td align="left">[% HTML.escape(order.shiptocountry) %]</td>
+    </tr>
+    <tr>
+        <td align="right">Telefono Diurno:</td>
+        <td align="left">[% HTML.escape(order.billtodayphone) %]</td>
+        <td></td>
+        <td align="right">Telefono Diurno:</td>
+        <td align="left">[% HTML.escape(order.shiptodayphone) %]</td>
+    </tr>
+    <tr>
+        <td align="right">Telefono Notturno:</td>
+        <td align="left">[% HTML.escape(order.billtonightphone) %]</td>
+        <td></td>
+        <td align="right">Telefono Notturno:</td>
+        <td align="left">[% HTML.escape(order.shiptonightphone) %]</td>
+    </tr>
+    <tr>
+        <td align="right">Fax:</td>
+        <td align="left">[% HTML.escape(order.billtofax) %]</td>
+        <td></td>
+        <td align="right">Fax:</td>
+        <td align="left">[% HTML.escape(order.shiptofax) %]</td>
+    </tr>
+    <tr>
+        <td align="right">Email:</td>
+        <td align="left">[% HTML.escape(order.billtoemail) %]</td>
+        <td></td>
+        <td align="right">Email:</td>
+        <td align="left">[% HTML.escape(order.shiptoemail) %]</td>
+    </tr>
+    <tr>
+        <td colspan="5" height="5">&nbsp;</td>
+    </tr>
+    <tr>
+        <td align="right" valign="top">Commenti:</td>
+        <td colspan="4" valign="top">[% HTML.escape(order.comments) %]</td>
+    </tr>
+    <tr>
+        <td colspan="5" height="5">&nbsp;</td>
+    </tr>
+    <tr>
+        <td colspan="5">
+            <table border="0" cellpadding="3" cellspacing="5" width="100%">
+                <tr>
+                    <th align="left">SKU</th>
+                    <th align="left">Descrizione</th>
+                    <th align="right">Prezzo</th>
+                    <th align="center">Quantità</th>
+                    <th align="right">Totale</th>
+                </tr>
+            [% FOREACH item = order.items %]
+                <tr>
+                        <td align="left">[% HTML.escape(item.sku) %]</td>
+                        <td align="left">[% HTML.escape(item.description) %]</td>
+                        <td align="right">[% HTML.escape(item.price) %]</td>
+                        <td align="center">[% HTML.escape(item.quantity) %]</td>
+                        <td align="right">[% HTML.escape(item.total) %]</td>
+                </tr>
+            [% END %]
+                <tr>
+                        <td align="right" colspan="4">Subtotale:</td>
+                        <td align="right">[% HTML.escape(order.subtotal) %]</td>
+                </tr>
+                <tr>
+                        <td align="right" colspan="4">Imposte:</td>
+                        <td align="right">[% HTML.escape(order.tax) %]</td>
+                </tr>
+                <tr>
+                        <td align="right" colspan="4">Spedizione:</td>
+                        <td align="right">[% HTML.escape(order.shipping) %]</td>
+                </tr>
+                <tr>
+                        <td align="right" colspan="4">Gestione:</td>
+                        <td align="right">[% HTML.escape(order.handling) %]</td>
+                </tr>
+                <tr>
+                        <td align="right" colspan="4">Totale:</td>
+                        <td align="right">[% HTML.escape(order.total) %]</td>
+                </tr>
+                <tr>
+                    <td colspan="5" height="5">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="5" align="right">
+                        <form action="[% c.uri_for('/checkout/payment/') %]" method="GET">
+                            <input type="submit" value="Continua">
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </td>
+</table>

@@ -1,0 +1,31 @@
+cart/save:
+  - name
+  - [ [NOT_BLANK], [LENGTH, 1, 50] ]
+cart/delete:
+  - id
+  -
+    -
+      - REGEX
+      - !!perl/regexp (?i-xsm:^[a-f0-9]{8}-([a-f0-9]{4}-){3}[a-f0-9]{12}$)
+cart/destroy:
+  - id
+  -
+    -
+      - REGEX
+      - !!perl/regexp (?i-xsm:^[a-f0-9]{8}-([a-f0-9]{4}-){3}[a-f0-9]{12}$)
+cart/update:
+  - id
+  -
+    -
+      - REGEX
+      - !!perl/regexp (?i-xsm:^[a-f0-9]{8}-([a-f0-9]{4}-){3}[a-f0-9]{12}$)
+  - quantity
+  - [ [NOT_BLANK], [UINT] ]
+cart/restore:
+  - id
+  -
+    -
+      - REGEX
+      - !!perl/regexp (?i-xsm:^[a-f0-9]{8}-([a-f0-9]{4}-){3}[a-f0-9]{12}$)
+  - mode
+  - [ [BETWEEN, 1, 3] ]

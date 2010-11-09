@@ -1,0 +1,56 @@
+checkout/view:
+  id:
+    REGEX: Il campo id è in un formato scorretto.
+checkout/billing:
+  billtofirstname:
+    NOT_BLANK: Il campo Nome della Fatturazione non puo' essere vuoto.
+  billtolastname:
+    NOT_BLANK: Il campo Cognome della Fatturazione non puo' essere vuoto.
+  billtoaddress1:
+    NOT_BLANK: Il primo campo di Indirizzo della Fatturazione non puo' essere vuoto.
+  billtocity:
+    NOT_BLANK: Il campo Citta' della Fatturazione non puo' essere vuoto.
+  billtostate:
+    NOT_BLANK: Il campo Regione della Fatturazione non puo' essere vuoto.
+  billtozip:
+    NOT_BLANK: Il campo CAP della Fatturazione non puo' essere vuoto.
+  billtocountry:
+    NOT_BLANK: Il campo Stato della Fatturazione non puo' essere vuoto.
+  billtoemail:
+    NOT_BLANK: Il campo Email della Fatturazione non puo' essere vuoto.
+  shiptofirstname:
+    NOT_BLANK: Il campo Nome della Spedizione non puo' essere vuoto.
+  shiptolastname:
+    NOT_BLANK: Il campo Cognome della Spedizione non puo' essere vuoto.
+  shiptoaddress1:
+    NOT_BLANK: Il primo campo dell'Indirizzo della Spedizione non puo' essere vuoto.
+  shiptocity:
+    NOT_BLANK: Il campo Città della Spedizione non puo' essere vuoto.
+  shiptostate:
+    NOT_BLANK: Il campo Regione della Spedizione non puo' essere vuoto.
+  shiptozip:
+    NOT_BLANK: Il campo CAP della Spedizione non puo' essere vuoto.
+  shiptocountry:
+    NOT_BLANK: Il campo Stato della Spedizione non puo' essere vuoto.
+  shiptoemail:
+    NOT_BLANK: Il campo Email della Spedizione non puo' essere vuoto.
+checkout/payment:
+  ccname:
+    NOT_BLANK: Il nome della carta di credito e' richiesto.
+  cctype:
+    NOT_BLANK: Il campo tipo della carta di credito e' richiesto.
+  ccn:
+    NOT_BLANK: Il numero della carta di credito e' richiesto.
+    LENGTH: Il numero della carta di credito deve essere composto da 12 a 16 cifre.
+    UINT: Il numero della carta di credito deve contenere solo cifre.
+  ccm:
+    NOT_BLANK: Il campo del mese di scadenza della carta di credito e' richiesto.
+    BETWEEN: Il mese di scadenza della carta di credito deve essere compreso fra 1 e 12.
+  ccy:
+    NOT_BLANK: L'anno di scadenza della carta di credito e' richiesto.
+    LENGTH: L'anno di scadenza della carta di credito deve avere 2 cifre.
+    UINT: L'anno di scadenza della carta di credito deve contenere solo cifre.
+  ccvn:
+    NOT_BLANK: Il codice di sicurezza della carta di credito e' richiesto.
+    LENGTH: Il codice di sicurezza della carta deve avere da 3 a 4 cifre.
+    UINT: Il codice di sicurezza della carta di credito deve contenere solo cifre.
