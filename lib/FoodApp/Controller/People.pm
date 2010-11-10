@@ -57,6 +57,7 @@ sub login :Local :Args(0) {
 		
 		else {
 			$c->stash->{'message'} = "Login invalido.";
+			$c->response->status(401);
 		}
 	}
 } 
