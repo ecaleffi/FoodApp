@@ -11,7 +11,7 @@ use MooseX::NonMoose;
 use namespace::autoclean;
 extends 'DBIx::Class::Core';
 
-__PACKAGE__->load_components("InflateColumn::DateTime");
+__PACKAGE__->load_components("InflateColumn::DateTime", "EncodedColumn");
 
 =head1 NAME
 
@@ -141,10 +141,25 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-08 18:48:38
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:jG/0swRq7TKqzA8m1kGC5w
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-19 10:43:31
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:vZG8inSzwz9UjtPZmSPekA
 
 __PACKAGE__->many_to_many(roles => 'have_right_to', 'role');
+
+# Have the 'password' column use a SHA-1 hash and 10-character salt
+# with hex encoding; Generate the 'check_password" method
+__PACKAGE__->add_columns(
+    'password' => {
+        data_type           => "TEXT",
+        size                => undef,
+        encode_column       => 1,
+        encode_class        => 'Digest',
+        encode_args         => {algorithm => 'SHA-1', 
+                                format => 'hex', 
+                                salt_length => 10},
+        encode_check_method => 'check_password',
+    },
+);
 
 # You can replace this text with custom content, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;

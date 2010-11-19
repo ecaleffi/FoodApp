@@ -11,7 +11,7 @@ use MooseX::NonMoose;
 use namespace::autoclean;
 extends 'DBIx::Class::Core';
 
-__PACKAGE__->load_components("InflateColumn::DateTime");
+__PACKAGE__->load_components("InflateColumn::DateTime", "EncodedColumn");
 
 =head1 NAME
 
@@ -62,8 +62,8 @@ __PACKAGE__->might_have(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-29 11:26:28
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:vxJrdPF/Sg6ZYkAqmiLjcw
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-19 10:43:31
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:dfksIz5F8Ry3Ox1DHiUZyw
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

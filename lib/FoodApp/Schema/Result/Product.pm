@@ -11,7 +11,7 @@ use MooseX::NonMoose;
 use namespace::autoclean;
 extends 'DBIx::Class::Core';
 
-__PACKAGE__->load_components("InflateColumn::DateTime");
+__PACKAGE__->load_components("InflateColumn::DateTime", "EncodedColumn");
 
 =head1 NAME
 
@@ -129,8 +129,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-02 13:31:59
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:tz6oVWm5AOGMF00DZNJCKg
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-19 10:43:31
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:TzktbZkIs+xYy6m01wusIQ
 
 __PACKAGE__->many_to_many(tags => 'product_tags', 'tag');
 
