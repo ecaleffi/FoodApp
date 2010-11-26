@@ -3,6 +3,8 @@ use strict;
 use warnings;
 use Data::Currency;
 
+use Data::Dumper;
+
 BEGIN {
     use base qw/Catalyst::Controller/;
     use Handel::Constants qw/:cart/;
@@ -48,13 +50,79 @@ and others from wasting sessions and cart records for no good reason.
 sub default :Path {
     my ($self, $c) = @_;
     $c->stash->{'template'} = 'cart/default';
-    
+
+
     if ($c->sessionid && $c->session->{'shopper'}) {
         if (my $cart = $c->forward('load')) {
             $c->stash->{'cart'} = $cart;
             $c->stash->{'items'} = $cart->items;
         };
     };
+    
+    if ( exists $c->stash->{'items'} && defined $c->stash->{'items'}) {
+    	my $cart = $c->stash->{'cart'};
+    	
+    	my @products = ();
+    	my %recipes_hash = ();
+    	
+    	my %original = ();
+		my @isect = ();
+    	
+    	## Prendo singolarmente ciascun item presente nel carrello
+    	foreach my $prod ($cart->items) {
+
+			#$DB::single = 1;
+    		## Per ciascun item risalgo al prodotto
+    		my $res = $c->model('FoodAppDB::Product')->find( { name => $prod->sku } );
+    		
+    		#push @products, $res->name;
+    		
+    		# Inserisco ciascun prodotto in un hash che ha come valore gli id
+    		# delle ricette che contengono tale prodotto
+			foreach my $temp_recipe ($res->uses) {
+				$c->log->debug($temp_recipe->recipe_id);
+				push @{ $recipes_hash {$res->name} }, $temp_recipe->recipe_id;	
+			}
+												
+    	}
+    	## Stampa di prova
+    	$c->log->debug(Dumper (\\%recipes_hash));    	
+    	#$c->log->debug(Dumper(@products));
+    	
+    	## Definisco un hash per contare il numero di occorrenze degli id delle ricette
+    	my %count = ();
+    	## Conta il numero di prodotti presenti nel carrello
+    	my $num;
+    	
+    	## Per ciascuna prodotto presente nell'hash, salvo l'array degli id delle
+    	## ricette in cui tale prodotto è contenuto e per ciascun id lo inserisco
+    	## nell'hash count assegnandoli come valore il numero di occorrenze di tale
+    	## id all'interno del recipes_hash
+    	foreach my $e (keys %recipes_hash) {
+    		$num++;
+    		my @r = @{ $recipes_hash{$e}};
+    			foreach my $id (@r) { 
+    				$count{$id}++;
+    			}
+    	}
+    	
+    	## Gli id delle ricette comuni a tutti i prodotti presenti nel carrello
+    	## sono quelli con un numero di occorrenze esattamente pari al numero di
+    	## prodotti presenti nel carrello.
+    	## Inserisco i risultati nell'array @isect
+    	foreach my $e (keys %count) {
+    		if ($count{$e} == $num) {
+    			push @isect, $e;
+    		}
+    	}
+    	
+    	##Stampe di prova
+    	$c->log->debug(Dumper(\\%count));
+    	$c->log->debug(Dumper(@isect));
+    	$c->log->debug(Dumper($num));
+    }
+
+
 
     return;
 };

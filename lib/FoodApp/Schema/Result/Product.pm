@@ -128,11 +128,27 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+=head2 uses
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-19 10:43:31
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:TzktbZkIs+xYy6m01wusIQ
+Type: has_many
+
+Related object: L<FoodApp::Schema::Result::Use>
+
+=cut
+
+__PACKAGE__->has_many(
+  "uses",
+  "FoodApp::Schema::Result::Use",
+  { "foreign.product_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-25 15:26:23
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:z3Vbi3qRyxH32leDRd+IsA
 
 __PACKAGE__->many_to_many(tags => 'product_tags', 'tag');
+
 
 # You can replace this text with custom content, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;
