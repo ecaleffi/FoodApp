@@ -1,6 +1,10 @@
 [% USE HTML %]
 <h1>Il tuo Carrello</h1>
 [% INCLUDE cart/errors %]
+
+<table cellspacing="10" cellpadding="5">
+	<td>
+
 [% IF items.count %]
     <table border="0" cellpadding="3" cellspacing="5">
         <tr>
@@ -57,3 +61,35 @@
 [% ELSE %]
     <p>Il tuo carrello è vuoto.</p>
 [% END %]
+
+</td>
+
+<td width="30">
+</td>
+
+[% IF recipes.size %]
+<td>
+	<table cellspacing="15" cellpadding="5">
+		<tr>
+			<th colspan="2">Ricette consigliate in base ai prodotti presenti nel carrello</th>
+		</tr>
+		<tr>
+			<th>Ricetta</th>
+			<th>Prodotti</th>
+		</tr>
+		[% FOREACH recipe IN recipes %]
+			<tr>
+				<td align="center">[% recipe.description %]</td>
+				<td align="center">
+					[% FOREACH product IN recipe.uses %]
+						<li>
+							[% product.product.name %]
+						</li>
+					[% END %]
+				</td>		
+			</tr>
+		[% END %]
+	</table>
+</td>
+[% END %]
+</table>

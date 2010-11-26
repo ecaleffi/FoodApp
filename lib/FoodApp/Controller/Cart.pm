@@ -120,6 +120,15 @@ sub default :Path {
     	$c->log->debug(Dumper(\\%count));
     	$c->log->debug(Dumper(@isect));
     	$c->log->debug(Dumper($num));
+    	
+    	my @stash_recipes;
+    	
+    	foreach my $rec_id (@isect) {
+    		push @stash_recipes, $c->model('FoodAppDB::Recipe')->find( 
+    			{ id => $rec_id } );
+    	}
+    	
+    	$c->stash(recipes => [ @stash_recipes ]);
     }
 
 
