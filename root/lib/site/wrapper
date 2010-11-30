@@ -28,6 +28,9 @@
 				[% IF c.user_exists() && c.check_user_roles('user') %]
 					<a href="[% c.uri_for(c.controller('people').action_for('profile'), [c.user.id]) %]">Profilo</a>
 				[% END %]
+				[% IF c.user_exists() %]
+					<a href="[% c.uri_for('/recipe/list') %]">Ricette</a>
+				[% END %]
 				[% IF c.session.shopper %]
 					<a href="[% c.uri_for('/cart') %]">Carrello</a>
 				[% END %]

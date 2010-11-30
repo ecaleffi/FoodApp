@@ -65,7 +65,6 @@ sub default :Path {
     	my @products = ();
     	my %recipes_hash = ();
     	
-    	my %original = ();
 		my @isect = ();
     	
     	## Prendo singolarmente ciascun item presente nel carrello
@@ -484,6 +483,7 @@ sub validate : Private {
 
     return;
 };
+
 
 =head1 AUTHOR
 

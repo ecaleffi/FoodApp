@@ -1,0 +1,86 @@
+<script language="JavaScript" type="text/javascript">
+<!--
+var num=1;
+
+function accoda(){
+	if(document.createElement && document.getElementById && document.getElementsByTagName) {
+		// crea elementi
+		var oTr=document.createElement("TR");
+		var oTd0=document.createElement("TD");
+		var oTd1=document.createElement("TD");
+		var oTd2=document.createElement("TD");
+		var oField=document.createElement("INPUT");
+		var oButt=document.createElement("INPUT");
+
+		// setta attributi
+  		oField.setAttribute("type","text");
+		oField.setAttribute("name","product"+num);
+		oButt.setAttribute("type","button");
+		oButt.setAttribute("value","rimuovi");
+
+		// setta gestore evento
+		if(oButt.attachEvent) oButt.attachEvent('onclick',function(e){rimuovi(e);})
+		else if(oButt.addEventListener) oButt.addEventListener('click',function(e){rimuovi(e);},false)
+
+		// appendi al relativo padre
+		oTd1.appendChild(oField);
+		oTd2.appendChild(oButt);
+		oTr.appendChild(oTd0);
+		oTr.appendChild(oTd1);
+		oTr.appendChild(oTd2);
+		document.getElementById('tabella').getElementsByTagName('TBODY')[0].appendChild(oTr);
+
+		// incrementa variabile globale
+		num++
+	}
+}
+
+
+function rimuovi(e){
+	if(document.removeChild && document.getElementById && document.getElementsByTagName) {
+		if(!e) e=window.event;
+		var srg=(e.target)?e.target:e.srcElement;
+
+		// risali al tr del td che contiene l' elemento che ha scatenato l' evento
+		while(srg.tagName!="TR"){srg=(srg.parentNode)?srg.parentNode:srg.parentElement}
+
+		// riferimento al tbody
+		var tb=document.getElementById('tabella').getElementsByTagName('TBODY')[0];
+		
+		// rimuovi
+		tb.removeChild(srg);
+	}
+}
+
+function setNumProd(numProd) {
+	numProd.value = num;
+}
+//-->
+</script>
+
+<form method="post" action="[% c.uri_for('form_create') %]">
+	<table cellspacing="15" id="tabella" >
+		<tr>
+			<td>Descrizione:</td>
+			<td><input type="text" name="description"></td>
+		</tr>
+		
+		<tr>
+			<td>Prodotti:</td>
+			<td><input type="text" name="product0" /></td>
+			<td><input type="button" disabled="disabled" value="rimuovi" /></td>	
+		</tr>
+		<tbody>
+			<tr>
+				<td></td>
+				<td><input type="button" value="Aggiungi prodotto" onclick="accoda()" /></td>
+			</tr>
+		</tbody>
+		<tr>
+			<td>
+				<input type="hidden" name="numProd" value=''>
+				<input type="submit" name="Submit" value="Crea Ricetta" onclick="setNumProd(numProd)">
+			</td> 
+		</tr>
+	</table>
+</form>

@@ -88,7 +88,7 @@ sub logout :Local :Args(0) {
 
 =head2 base
 
-Azione che permette di inserire nello stash i dati relativi agli ustenti e ai relativi ruoli. Grazie a tale azione sarà poi possibile eseguire altre particolari azioni concatenate a questa.
+Azione che permette di inserire nello stash i dati relativi agli utenti e ai relativi ruoli. Grazie a tale azione sarà poi possibile eseguire altre particolari azioni concatenate a questa.
 
 =cut
 

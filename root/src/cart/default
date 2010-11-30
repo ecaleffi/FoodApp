@@ -30,7 +30,7 @@
             <form action="[% c.uri_for('/cart/delete/') %]" method="POST">
                 <input type="hidden" name="id" value="[% HTML.escape(item.id) %]">
                 <td>
-                    <input type="submit" value="Delete">
+                    <input type="submit" value="Elimina">
                 </td>
             </form>
         </tr>
@@ -64,7 +64,7 @@
 
 </td>
 
-<td width="30">
+<td width="20">
 </td>
 
 [% IF recipes.size %]
