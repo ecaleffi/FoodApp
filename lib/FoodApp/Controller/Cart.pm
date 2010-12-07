@@ -61,6 +61,7 @@ sub default :Path {
     
     if ( exists $c->stash->{'items'} && defined $c->stash->{'items'}) {
     	my $cart = $c->stash->{'cart'};
+    	my @item_array = ();
     	
     	my @products = ();
     	my %recipes_hash = ();
@@ -73,6 +74,8 @@ sub default :Path {
 			#$DB::single = 1;
     		## Per ciascun item risalgo al prodotto
     		my $res = $c->model('FoodAppDB::Product')->find( { name => $prod->sku } );
+    		
+    		push @item_array, $prod->sku;
     		
     		#push @products, $res->name;
     		
@@ -127,7 +130,8 @@ sub default :Path {
     			{ id => $rec_id } );
     	}
     	
-    	$c->stash(recipes => [ @stash_recipes ]);
+    	$c->stash(recipes => [ @stash_recipes ] );
+    	$c->stash(item_array => [ @item_array] );
     }
 
 

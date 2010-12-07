@@ -82,11 +82,30 @@
 				<td align="center">[% recipe.description %]</td>
 				<td align="center">
 					[% FOREACH product IN recipe.uses %]
-						<li>
-							[% product.product.name %]
-						</li>
+						[% trovato = 0 %]
+						[% FOREACH sku IN item_array %]
+							[% IF product.product.name == sku %]
+								[% trovato = 1 %]
+								[% BREAK %]
+							[% END %]
+						[% END %]
+						[% IF trovato == 1 %]
+							<li>
+								[% product.product.name %]
+							</li>
+						[% ELSE %]
+							<li>
+								<form action="/cart/add/" method="POST">
+    								<input type="hidden" name="sku" value="[% product.product.name %]" />
+    								<input type="hidden" name="description" value="[% product.product.description %]" />
+    								<input type="hidden" name="price" value="[% product.product.price %]" />
+    								<input type="hidden" name="quantity" value="1" />
+    								[% product.product.name %]	<input type="submit" value="Aggiungi" />
+          						</form>
+							</li>
+						[% END %]		
 					[% END %]
-				</td>		
+				</td>
 			</tr>
 		[% END %]
 	</table>

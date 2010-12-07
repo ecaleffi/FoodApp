@@ -21,6 +21,7 @@
 	</tr>
 	[% END %]
 	[% IF c.user_exists() && c.check_user_roles('admin') %]
+		<tr height="10"></tr>
 		<tr>
 			<td colspan="2">
 				<a href="[% c.uri_for('/recipe/form_create') %]">Crea una ricetta</a>

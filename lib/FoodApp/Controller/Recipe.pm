@@ -74,6 +74,13 @@ sub form_create :Local {
 			foreach my $p (@products) {
 				$p->uses->create( { recipe_id => $recipe->id } );
 			}
+			
+			# Redirigo l'utente alla lista di ricette
+			if ($recipe) {
+				$c->res->redirect($c->uri_for(
+					$c->controller('Recipe')->action_for('list')));
+			}
+			
 		}
 		
 	}
