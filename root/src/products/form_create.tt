@@ -9,7 +9,7 @@
 	<tr><td>Nome:</td><td><input type="text" name="name"/></td></tr>
 	<tr><td>Descrizione:</td><td><input type="text" name="description"/></td></tr>
 	<tr><td>Prezzo (€/Kg):</td><td><input type="text" name="price"/></td></tr>
-	<tr><td>Scadenza:</td><td><input type="text" name="duration" id="f_duration"/></td>
+	<tr><td>Scadenza:</td><td><input type="text" name="duration" id="f_duration" readonly="true"/></td>
 		<td><input type="button" id="f_duration_trigger" value="..."/></td>
 		<td><input type="button" id="f_clearDuration" onclick="clearDuration()" value="cancella"/></td>
 		<script type="text/javascript">

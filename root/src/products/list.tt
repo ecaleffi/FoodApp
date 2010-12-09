@@ -1,4 +1,4 @@
-<table cellspacing="15">
+<table cellspacing="10">
 	<tr><th>Nome</th><th>Descrizione</th><th>Prezzo (€/Kg)</th><th>Scadenza</th><th>Links</th>
 	[% IF c.user_exists() && c.check_user_roles('admin') %]
 		<th>Elimina</th>
@@ -10,7 +10,7 @@
 		<td>[% product.name %]</td>
 		<td>[% product.description %]</td>
 		<td>[% product.price %]</td>
-		<td>[% product.duration %]</td>
+		<td>[% product.duration.set_locale("it_IT").strftime("%d %B %Y") %]</td>
 		<td> 
 			[% IF c.user_exists() && c.check_user_roles('user') %]
 			<form action="/cart/add/" method="POST">
