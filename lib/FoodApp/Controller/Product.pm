@@ -70,7 +70,7 @@ sub form_create :Local {
 	$c->stash->{'template'} = 'products/form_create.tt';
 	
 	if ($c->user_exists() && $c->check_user_roles('admin')) {
-		if (lc $c->req->method eq 'post') {
+		if ((lc $c->req->method eq 'post') && ($c->req->param('Submit'))) {
 			my $params = $c->req->params;
 			
 			#Data::Currency->code('EUR');
@@ -81,6 +81,20 @@ sub form_create :Local {
 			}
 			
 			my $price = Handel::Currency->new($val_price, 'EUR', 'FMT_STANDARD');
+			
+			$c->form(
+				name => [qw/NOT_BLANK/],
+				description => [qw/NOT_BLANK/],
+				price => [qw/NOT_BLANK/],
+				duration => [qw/NOT_BLANK/]
+			);
+		
+			my $result = $c->form;
+			if ( $result->has_error ) {
+				return $c->res->redirect( $c->uri_for(
+					$c->controller('Product')->action_for('form_create'),
+					{status_msg => "I campi da inserire non possono essere lasciati vuoti."} ) );
+			}
 						
 			# Creo il prodotto
 			my $product = $c->model('FoodAppDB::Product')->create({

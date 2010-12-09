@@ -1,9 +1,48 @@
-<form method="post" action="[% c.uri_for('form_create') %]">
+<script src="/src/products/jscal2.js"></script>
+<script src="/src/products/lang/it.js"></script>
+<link rel="stylesheet" type="text/css" href="/src/products/css/jscal2.css" />
+<link rel="stylesheet" type="text/css" href="/src/products/css/border-radius.css" />
+<link rel="stylesheet" type="text/css" href="/src/products/css/steel/steel.css" />
+
+<form method="post" action="[% c.uri_for('form_create') %]" id="form">
 <table cellspacing="15">
-	<tr><td>Nome:</td><td><input type="text" name="name"></td></tr>
-	<tr><td>Descrizione:</td><td><input type="text" name="description"></td></tr>
-	<tr><td>Prezzo (€/Kg):</td><td><input type="text" name="price"></td></tr>
-	<tr><td>Scadenza:</td><td><input type="text" name="duration"></td></tr>
+	<tr><td>Nome:</td><td><input type="text" name="name"/></td></tr>
+	<tr><td>Descrizione:</td><td><input type="text" name="description"/></td></tr>
+	<tr><td>Prezzo (€/Kg):</td><td><input type="text" name="price"/></td></tr>
+	<tr><td>Scadenza:</td><td><input type="text" name="duration" id="f_duration"/></td>
+		<td><input type="button" id="f_duration_trigger" value="..."/></td>
+		<td><input type="button" id="f_clearDuration" onclick="clearDuration()" value="cancella"/></td>
+		<script type="text/javascript">
+                  new Calendar({
+                          inputField: document.getElementById("f_duration"),
+                          dateFormat: "%Y-%m-%d",
+                          trigger: document.getElementById("f_duration_trigger"),
+                          bottomBar: false,
+                          onSelect: function() {
+                                  var date = Calendar.intToDate(this.selection.get());
+                                  LEFT_CAL.args.min = date;
+                                  LEFT_CAL.redraw();
+                                  this.hide();
+                          }
+                  });
+                  function clearDuration() {
+                          document.getElementById("f_duration").value = "";
+                          LEFT_CAL.args.min = null;
+                          LEFT_CAL.redraw();
+                  };
+			</script>
+	</tr>
 	<tr><td><input type="submit" name="Submit" value="Crea"></td></tr>
 </table>
 </form>
+
+</br>
+
+
+			
+		
+
+
+
+
+
