@@ -32,6 +32,8 @@
                   };
 			</script>
 	</tr>
+	<tr><td>Quantità scorta:</td><td><input type="number" name="stock_qty"/></td></tr>
+	<tr><td>Soglia minima:</td><td><input type="number" name="stock_threshold"/></td></tr>
 	<tr><td><input type="submit" name="Submit" value="Crea"></td></tr>
 </table>
 </form>

@@ -50,6 +50,16 @@ __PACKAGE__->table("product");
   data_type: 'date'
   is_nullable: 1
 
+=head2 stock_qty
+
+  data_type: 'integer'
+  is_nullable: 1
+
+=head2 stock_threshold
+
+  data_type: 'integer'
+  is_nullable: 1
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -63,6 +73,10 @@ __PACKAGE__->add_columns(
   { data_type => "money", is_nullable => 1 },
   "duration",
   { data_type => "date", is_nullable => 1 },
+  "stock_qty",
+  { data_type => "integer", is_nullable => 1 },
+  "stock_threshold",
+  { data_type => "integer", is_nullable => 1 },
 );
 __PACKAGE__->set_primary_key("id");
 
@@ -144,8 +158,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-25 15:26:23
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:z3Vbi3qRyxH32leDRd+IsA
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-12-11 10:15:14
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:lch2sQfc58Ih52WwhAoVpw
 
 __PACKAGE__->many_to_many(tags => 'product_tags', 'tag');
 

@@ -41,6 +41,12 @@ __PACKAGE__->table("user");
   is_nullable: 0
   size: 32
 
+=head2 username
+
+  data_type: 'char'
+  is_nullable: 0
+  size: 32
+
 =head2 password
 
   data_type: 'char'
@@ -79,6 +85,8 @@ __PACKAGE__->add_columns(
   "name",
   { data_type => "char", is_nullable => 0, size => 32 },
   "surname",
+  { data_type => "char", is_nullable => 0, size => 32 },
+  "username",
   { data_type => "char", is_nullable => 0, size => 32 },
   "password",
   { data_type => "char", is_nullable => 0, size => 64 },
@@ -141,8 +149,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-19 10:43:31
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:vZG8inSzwz9UjtPZmSPekA
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-12-10 12:29:58
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:9yAQsGIGgl0eYM2MSukJow
 
 __PACKAGE__->many_to_many(roles => 'have_right_to', 'role');
 

@@ -103,6 +103,8 @@ sub form_create :Local {
 				#price		=> $params->{price},
 				price		=> $price,
 				duration	=> $params->{duration},
+				stock_qty		=> $params->{stock_qty},
+				stock_threshold	=> $params->{stock_threshold}
 			});
 		
 			# Salvo il modello del nuovo oggetto nello stash e setto il template

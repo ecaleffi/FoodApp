@@ -162,6 +162,15 @@ sub payment : Local {
                 });
 
                 if ($checkout->process == CHECKOUT_STATUS_OK) {
+                	## Aggiorno le quantità delle scorte nel carrello
+                	foreach my $prod ($order->items) {
+                		my $product = $c->model('FoodAppDB::Product')->find( { name => $prod->sku } );
+                		
+                		$product->update({
+                			stock_qty => $product->stock_qty - $prod->quantity,
+                		});
+                	}
+                
                     if ($checkout->order->update) {
                         eval {
                             $c->model('Cart')->destroy({

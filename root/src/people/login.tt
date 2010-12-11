@@ -3,8 +3,8 @@
 		method="post" accept-charset="utf-8">
 		<table cellspacing="15">
 			<tr>
-				<td><label for="name">Nome:</label></td>
-				<td><input type="text" name="name" value="" id="name"/></td>
+				<td><label for="username">Username:</label></td>
+				<td><input type="text" name="username" value="" id="username"/></td>
 			</tr>
 			<tr>
 				<td><label for="password">Password:</label></td>

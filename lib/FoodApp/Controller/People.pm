@@ -39,9 +39,9 @@ sub login :Local :Args(0) {
 
 	$c->stash->{'template'} = 'people/login.tt';
 
-	if ( exists($c->req->params->{'name'}) ) {
+	if ( exists($c->req->params->{'username'}) ) {
 		if ($c->authenticate( {
-			name => $c->req->params->{'name'},
+			username => $c->req->params->{'username'},
 			password => $c->req->params->{'password'}
 		}) )
 		{
@@ -120,6 +120,7 @@ sub register :Chained('base') :PathPart('register') :Args(0) {
 		$c->form(
 			name => [qw/NOT_BLANK ASCII/],
 			surname => [qw/NOT_BLANK ASCII/],
+			username => [qw/NOT_BLANK/],
 			password => [qw/NOT_BLANK/]
 		);
 		
@@ -134,6 +135,7 @@ sub register :Chained('base') :PathPart('register') :Args(0) {
 		my $newuser = $users_rs->create({
 			name			=> $params->{name},
 			surname			=> $params->{surname},
+			username		=> $params->{username},
 			password		=> $params->{password},
 			address			=> $params->{address},
 			city			=> $params->{city},
@@ -146,7 +148,7 @@ sub register :Chained('base') :PathPart('register') :Args(0) {
 		
 		## Autentico l'utente
 		if ($c->authenticate({
-			name 		=> $params->{name},
+			username 	=> $params->{username},
 			password 	=> $params->{password} }) )
 		{
 		
