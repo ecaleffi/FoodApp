@@ -1,26 +1,80 @@
+<script language="JavaScript" type="text/javascript">
+	function fillForm(){
+		if (document.myForm.equal.checked == true) {
+		
+			var nome = document.getElementById("billname").value;
+			var cognome = document.getElementById("billlastname").value;
+			var indirizzo1 = document.getElementById("billaddress1").value;
+			var indirizzo2 = document.getElementById("billaddress2").value;
+			var indirizzo3 = document.getElementById("billaddress3").value;
+			var citta = document.getElementById("billcity").value;
+			var regione = document.getElementById("billstate").value;
+			var cap = document.getElementById("billzip").value;
+			var stato = document.getElementById("billcountry").value;
+			var telgiorno = document.getElementById("billdayphone").value;
+			var telnotte = document.getElementById("billnightphone").value;
+			var fax = document.getElementById("billfax").value;
+			var email = document.getElementById("billemail").value;
+			document.myForm.shiptofirstname.value = nome;
+			document.myForm.shiptolastname.value = cognome;
+			document.myForm.shiptoaddress1.value = indirizzo1;
+			document.myForm.shiptoaddress2.value = indirizzo2;
+			document.myForm.shiptoaddress3.value = indirizzo3;
+			document.myForm.shiptocity.value = citta;
+			document.myForm.shiptostate.value = regione;
+			document.myForm.shiptozip.value = cap;
+			document.myForm.shiptocountry.value = stato;
+			document.myForm.shiptodayphone.value = telgiorno;
+			document.myForm.shiptonightphone.value = telnotte;
+			document.myForm.shiptofax.value = fax;
+			document.myForm.shiptoemail.value = email;
+		
+		}
+		else {
+		
+			document.myForm.shiptofirstname.value = '';
+			document.myForm.shiptolastname.value = '';
+			document.myForm.shiptoaddress1.value = '';
+			document.myForm.shiptoaddress2.value = '';
+			document.myForm.shiptoaddress3.value = '';
+			document.myForm.shiptocity.value = '';
+			document.myForm.shiptostate.value = '';
+			document.myForm.shiptozip.value = '';
+			document.myForm.shiptocountry.value = '';
+			document.myForm.shiptodayphone.value = '';
+			document.myForm.shiptonightphone.value = '';
+			document.myForm.shiptofax.value = '';
+			document.myForm.shiptoemail.value = '';
+			
+		}
+		
+	}
+</script>
+
 [% USE HTML %]
 <h1>Informazioni di Fatturazione/Spedizione</h1>
 [% INCLUDE checkout/errors %]
-<form action="[% c.uri_for('/checkout/billing/') %]" method="POST">
+<form action="[% c.uri_for('/checkout/billing/') %]" method="POST" name="myForm">
     <table border="0" cellpadding="3" cellspacing="5">
         <tr>
             <th colspan="2" align="left">Fatturazione</th>
             <th width="25"></th>
-            <th colspan="2" align="left">Spedizione</th>
+            <th colspan="2" align="left">Spedizione (Uguale a Fatturazione<input type="checkbox" name="equal" id="box" value="equal_billing" 
+            																 onClick="fillForm()" />)</th>
         </tr>
         <tr>
             <td colspan="5" height="5">&nbsp;</td>
         </tr>
         <tr>
             <td align="right">Nome:</td>
-            <td align="left"><input type="text" name="billtofirstname" value="[% HTML.escape(order.billtofirstname) %]" tabindex="1"></td>
+            <td align="left"><input type="text" name="billtofirstname" id="billname" value="[% HTML.escape(order.billtofirstname) %]" tabindex="1"></td>
             <td></td>
             <td align="right">Nome:</td>
             <td align="left"><input type="text" name="shiptofirstname" value="[% HTML.escape(order.shiptofirstname) %]" tabindex="14"></td>
         </tr>
         <tr>
             <td align="right">Cognome:</td>
-            <td align="left"><input type="text" name="billtolastname" value="[% HTML.escape(order.billtolastname) %]" tabindex="2"></td>
+            <td align="left"><input type="text" name="billtolastname" id="billlastname" value="[% HTML.escape(order.billtolastname) %]" tabindex="2"></td>
             <td></td>
             <td align="right">Cognome:</td>
             <td align="left"><input type="text" name="shiptolastname" value="[% HTML.escape(order.shiptolastname) %]" tabindex="15"></td>
@@ -30,77 +84,77 @@
         </tr>
         <tr>
             <td align="right">Indirizzo:</td>
-            <td align="left"><input type="text" name="billtoaddress1" value="[% HTML.escape(order.billtoaddress1) %]" tabindex="3"></td>
+            <td align="left"><input type="text" name="billtoaddress1" id="billaddress1" value="[% HTML.escape(order.billtoaddress1) %]" tabindex="3"></td>
             <td></td>
             <td align="right">Indirizzo:</td>
             <td align="left"><input type="text" name="shiptoaddress1" value="[% HTML.escape(order.shiptoaddress1) %]" tabindex="16"></td>
         </tr>
         <tr>
             <td align="right"></td>
-            <td align="left"><input type="text" name="billtoaddress2" value="[% HTML.escape(order.billtoaddress2) %]" tabindex="4"></td>
+            <td align="left"><input type="text" name="billtoaddress2" id="billaddress2" value="[% HTML.escape(order.billtoaddress2) %]" tabindex="4"></td>
             <td></td>
             <td align="right"></td>
             <td align="left"><input type="text" name="shiptoaddress2" value="[% HTML.escape(order.shiptoaddress2) %]" tabindex="17"></td>
         </tr>
         <tr>
             <td align="right"></td>
-            <td align="left"><input type="text" name="billtoaddress3" value="[% HTML.escape(order.billtoaddress3) %]" tabindex="5"></td>
+            <td align="left"><input type="text" name="billtoaddress3" id="billaddress3" value="[% HTML.escape(order.billtoaddress3) %]" tabindex="5"></td>
             <td></td>
             <td align="right"></td>
             <td align="left"><input type="text" name="shiptoaddress3" value="[% HTML.escape(order.shiptoaddress3) %]" tabindex="18"></td>
         </tr>
         <tr>
             <td align="right">Città:</td>
-            <td align="left"><input type="text" name="billtocity" value="[% HTML.escape(order.billtocity) %]" tabindex="6"></td>
+            <td align="left"><input type="text" name="billtocity" id="billcity" value="[% HTML.escape(order.billtocity) %]" tabindex="6"></td>
             <td></td>
             <td align="right">Città:</td>
             <td align="left"><input type="text" name="shiptocity" value="[% HTML.escape(order.shiptocity) %]" tabindex="19"></td>
         </tr>
         <tr>
             <td align="right">Regione:</td>
-            <td align="left"><input type="text" name="billtostate" value="[% HTML.escape(order.billtostate) %]" tabindex="7"></td>
+            <td align="left"><input type="text" name="billtostate" id="billstate" value="[% HTML.escape(order.billtostate) %]" tabindex="7"></td>
             <td></td>
             <td align="right">Regione:</td>
             <td align="left"><input type="text" name="shiptostate" value="[% HTML.escape(order.shiptostate) %]" tabindex="20"></td>
         </tr>
         <tr>
             <td align="right">CAP:</td>
-            <td align="left"><input type="text" name="billtozip" value="[% HTML.escape(order.billtozip) %]" tabindex="8"></td>
+            <td align="left"><input type="text" name="billtozip" id="billzip" value="[% HTML.escape(order.billtozip) %]" tabindex="8"></td>
             <td></td>
             <td align="right">CAP:</td>
             <td align="left"><input type="text" name="shiptozip" value="[% HTML.escape(order.shiptozip) %]" tabindex="21"></td>
         </tr>
         <tr>
             <td align="right">Stato:</td>
-            <td align="left"><input type="text" name="billtocountry" value="[% HTML.escape(order.billtocountry) %]" tabindex="9"></td>
+            <td align="left"><input type="text" name="billtocountry" id="billcountry" value="[% HTML.escape(order.billtocountry) %]" tabindex="9"></td>
             <td></td>
             <td align="right">Stato:</td>
             <td align="left"><input type="text" name="shiptocountry" value="[% HTML.escape(order.shiptocountry) %]" tabindex="22"></td>
         </tr>
         <tr>
             <td align="right">Telefono Diurno:</td>
-            <td align="left"><input type="text" name="billtodayphone" value="[% HTML.escape(order.billtodayphone) %]" tabindex="10"></td>
+            <td align="left"><input type="text" name="billtodayphone" id="billdayphone" value="[% HTML.escape(order.billtodayphone) %]" tabindex="10"></td>
             <td></td>
             <td align="right">Telefono Diurno:</td>
             <td align="left"><input type="text" name="shiptodayphone" value="[% HTML.escape(order.shiptodayphone) %]" tabindex="23"></td>
         </tr>
         <tr>
             <td align="right">Telefono Notturno:</td>
-            <td align="left"><input type="text" name="billtonightphone" value="[% HTML.escape(order.billtonightphone) %]" tabindex="11"></td>
+            <td align="left"><input type="text" name="billtonightphone" id="billnightphone" value="[% HTML.escape(order.billtonightphone) %]" tabindex="11"></td>
             <td></td>
             <td align="right">Telefono Notturno:</td>
             <td align="left"><input type="text" name="shiptonightphone" value="[% HTML.escape(order.shiptonightphone) %]" tabindex="24"></td>
         </tr>
         <tr>
             <td align="right">Fax:</td>
-            <td align="left"><input type="text" name="billtofax" value="[% HTML.escape(order.billtofax) %]" tabindex="12"></td>
+            <td align="left"><input type="text" name="billtofax" id="billfax" value="[% HTML.escape(order.billtofax) %]" tabindex="12"></td>
             <td></td>
             <td align="right">Fax:</td>
             <td align="left"><input type="text" name="shiptofax" value="[% HTML.escape(order.shiptofax) %]" tabindex="25"></td>
         </tr>
         <tr>
             <td align="right">Email:</td>
-            <td align="left"><input type="text" name="billtoemail" value="[% HTML.escape(order.billtoemail) %]" tabindex="13"></td>
+            <td align="left"><input type="text" name="billtoemail" id="billemail" value="[% HTML.escape(order.billtoemail) %]" tabindex="13"></td>
             <td></td>
             <td align="right">Email:</td>
             <td align="left"><input type="text" name="shiptoemail" value="[% HTML.escape(order.shiptoemail) %]" tabindex="26"></td>

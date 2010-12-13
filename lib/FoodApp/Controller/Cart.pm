@@ -156,22 +156,45 @@ Adds an item to the current cart during POST.
 sub add : Local {
     my ($self, $c) = @_;
     
+    ## Variabile che serve per sapere se sono entrato all'interno del controllo if
+    my $check_qty = 1;
+    
     if ($c->req->method eq 'POST') {
-        my $cart = $c->forward('create');
-        
-        my $params = $c->req->params;
-        my $price = $params->{price};
-        if ($price =~ m/\,/) {
-        	$price =~ s/\,/\./;
+    
+    	my $params = $c->req->params;
+    
+    	## Controllo che la quantità richiesta sia disponibile
+        my $product = $c->model('FoodAppDB::Product')->find( { name => $params->{sku} } );
+        if ( ($product->stock_qty - $params->{quantity}) < 0 ) {
+        	$c->log->debug("All'interno del controllo if...");
+        	$check_qty = 0;
+        	my $max_qty = $product->stock_qty;
+        	$c->res->redirect($c->uri_for(
+				$c->controller('Product')->action_for('list'),
+				{status_msg => "La quantità massima disponibile di questo prodotto è $max_qty." }) );
         }
+        else {
+    	
+        	my $cart = $c->forward('create');
         
-        $params->{price} = $price;
-        $c->req->{params} = $params;
+        	#my $params = $c->req->params;
+        	my $price = $params->{price};
+        	if ($price =~ m/\,/) {
+        		$price =~ s/\,/\./;
+        	}
+        
+        	$params->{price} = $price;
+        	$c->req->{params} = $params;
                 
-        $cart->add($c->req->params);
+        	$cart->add($c->req->params);
+        }
     };
 
-    $c->res->redirect($c->uri_for('/cart/'));
+	## Se sono entrato nell'if non faccio questo redirect che altrimenti sovrascriverebbe quello
+	## precedente
+	if ($check_qty) {
+    	$c->res->redirect($c->uri_for('/cart/'));
+    }
 };
 
 =head2 clear
