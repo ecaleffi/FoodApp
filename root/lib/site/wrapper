@@ -6,42 +6,63 @@
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 		<title>FoodApp</title>
 		<link rel="stylesheet"
-			href="/static/css/foodapp.css" type="text/css"
+			href="/static/css/foodappcarbon.css" type="text/css"
 				media="screen" title="no title" charset="utf-8">
 	</head>
-
+	
 	<body id="FoodAppBody">
-		<div id="header">
-			<h1>FoodApp</h1>
-			<img id='powered' src="/static/images/btn_88x31_built.png"/>
-			<div id="navbar">
-				<a href="[% c.uri_for('/product/list') %]">Home</a>
-				[% IF c.user_exists() %]
-					<a href="[% c.uri_for('/people/logout') %]">Logout</a>
-				[% ELSE %]
-					<a href="[% c.uri_for('/people/login') %]">Login</a>
+		<div id="container">
+			<!-- header -->
+			<div id="header">
+				<div id="slogan"><img id='powered' src="/static/images/btn_88x31_built.png"/></div>
+				<div id="logo"></div>
+			</div> <!--end header -->
+
+			<div id="menu">
+				<ul>
+					<li><a href="[% c.uri_for('/product/list') %]">Home</a></li>
+					[% IF c.user_exists() %]
+						<li><a href="[% c.uri_for('/people/logout') %]">Logout</a></li>
+					[% ELSE %]
+						<li><a href="[% c.uri_for('/people/login') %]">Login</a></li>
+					[% END %]
+					[% IF c.user_exists() && c.check_user_roles('admin') %]
+						<li><a href="[% c.uri_for('/product/form_create') %]">Crea Prodotto</a></li>
+						<li><a href="[% c.uri_for('/people/list') %]">Lista Utenti</a></li>
+					[% END %]
+					[% IF c.user_exists() && c.check_user_roles('user') %]
+						<li><a href="[% c.uri_for(c.controller('people').action_for('profile'), [c.user.id]) %]">Profilo</a></li>
+					[% END %]
+					[% IF c.user_exists() %]
+						<li><a href="[% c.uri_for('/recipe/list') %]">Ricette</a></li>
+					[% END %]
+					[% IF c.session.shopper %]
+						<li><a href="[% c.uri_for('/cart') %]">Carrello</a></li>
+					[% END %]
+				</ul>
+			</div> <!--end menu -->
+		</div> <!--end container -->
+			
+		<!-- main -->
+		<div id="main">
+			<div id="text">
+				[% IF message %]
+					<div class="messageblock">[% message %]</div>
 				[% END %]
-				[% IF c.user_exists() && c.check_user_roles('admin') %]
-					<a href="[% c.uri_for('/product/form_create') %]">Crea Prodotto</a>
-					<a href="[% c.uri_for('/people/list') %]">Lista Utenti</a>
+				[% IF status_msg || c.request.params.status_msg %]
+					<div class="messageblock">[% status_msg || c.request.params.status_msg %]</div>
 				[% END %]
-				[% IF c.user_exists() && c.check_user_roles('user') %]
-					<a href="[% c.uri_for(c.controller('people').action_for('profile'), [c.user.id]) %]">Profilo</a>
-				[% END %]
-				[% IF c.user_exists() %]
-					<a href="[% c.uri_for('/recipe/list') %]">Ricette</a>
-				[% END %]
-				[% IF c.session.shopper %]
-					<a href="[% c.uri_for('/cart') %]">Carrello</a>
-				[% END %]
+        		<span class="error">[% error_msg %]</span>
+				[% content %]
+			</div>
+		</div> <!-- end main -->
+		
+		<div id="footer">
+			<div id="footer_left">&copy; Copyright 2010 foodapp.com</div>
+			<div id="footer_right">
+				Design by <a href="http://www.designity.org/">Free Web Design Community</a>
 			</div>
 		</div>
-		<div id="contentarea">
-			[% IF message %]
-				<div class="messageblock">[% message %]</div>
-			[% END %]
-			<span class="message">[% status_msg || c.request.params.status_msg %]</span>
-        	<span class="error">[% error_msg %]</span>
-			[% content %]
-		</div>
+			
 	</body>
+</html>
