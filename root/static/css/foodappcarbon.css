@@ -2,16 +2,16 @@ body {padding:50px 50px; margin:0; font-family:Tahoma, Geneva, sans-serif; backg
 
 #container {background-color:#FFFFFF; padding:10px;}
 
-#header {height:150px; background-image:url(/static/images/header_bg.png);}
-#logo {font-size:30px; background:url(/static/images/Logo2.png) no-repeat; height:100px; padding:50px 0 0 30px;}
+#header {height:150px; background-color:#9999FF;}
+#logo {font-size:30px; background:url(/static/images/FoodApp_Logo.png) no-repeat; height:100px; padding:50px 0 0 30px;}
 #logo a {color:#FFFFFF; text-decoration:none;}
 #slogan {float:right; font-size:18px; color:#FFFFFF; padding:60px 30px 0 0;}
 
-#menu {height:40px; background-image:url(/static/images/menu_bg.png); margin-top:5px;}
+#menu {height:40px; background-color:#9966FF; margin-top:5px;}
 #menu ul {margin:0; padding:0;}
 #menu li {list-style:none; float:left; background:url(/static/images/menu_border.png) right no-repeat;}
 #menu a {float:left; height:20px; padding:10px 30px; color:#FFFFFF; font-size:15px; font-weight:bold; text-decoration:none; font-family:Arial, Helvetica, sans-serif;}
-#menu a:hover {background:url(/static/images/menu_border.png);}
+#menu a:hover {background:url(/static/images/menu_border3.png);}
 
 #main {float:left; width:100%; margin:5px 0; background:url(/static/images/main_bg.png); font-size:12px; }
 #main a {color:#333333;}
@@ -24,7 +24,7 @@ body {padding:50px 50px; margin:0; font-family:Tahoma, Geneva, sans-serif; backg
 #text ol, #text ul {padding:0; margin:8px 0;}
 #text li {margin-left:40px;}
 
-#footer {height:40px; color:#FFFFFF; font-size:11px; background-image:url(/static/images/footer_bg.png); clear:both;}
+#footer {height:40px; color:#FFFFFF; font-size:11px; background-color:#9966FF; clear:both;}
 #footer a {color:#FFFFFF;}
 #footer a:hover {color:#DFDFDF;}
 #footer_left {float:left; padding:13px 0 0 30px;}

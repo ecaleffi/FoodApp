@@ -1,6 +1,7 @@
 <script language="JavaScript" type="text/javascript">
 	function fillForm(){
-		if (document.myForm.equal.checked == true) {
+		var check = document.getElementById("box");
+		if (check.checked == true) {
 		
 			var nome = document.getElementById("billname").value;
 			var cognome = document.getElementById("billlastname").value;
@@ -59,7 +60,7 @@
         <tr>
             <th colspan="2" align="left">Fatturazione</th>
             <th width="25"></th>
-            <th colspan="2" align="left">Spedizione (Uguale a Fatturazione<input type="checkbox" name="equal" id="box" value="equal_billing" 
+            <th colspan="2" align="left">Spedizione (Uguale a Fatturazione<input type="checkbox" id="box" 
             																 onClick="fillForm()" />)</th>
         </tr>
         <tr>

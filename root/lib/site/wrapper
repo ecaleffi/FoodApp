@@ -14,8 +14,8 @@
 		<div id="container">
 			<!-- header -->
 			<div id="header">
-				<div id="slogan"><img id='powered' src="/static/images/btn_88x31_built.png"/></div>
 				<div id="logo"></div>
+				<div id="slogan"></div>
 			</div> <!--end header -->
 
 			<div id="menu">
