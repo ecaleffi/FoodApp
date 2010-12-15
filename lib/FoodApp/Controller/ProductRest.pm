@@ -1,6 +1,8 @@
 package FoodApp::Controller::ProductRest;
 use Moose;
 use namespace::autoclean;
+use DateTime;
+use DateTime::Locale;
 
 BEGIN {extends 'Catalyst::Controller::REST'; }
 
@@ -49,9 +51,11 @@ sub rest_product_list_GET {
 	my $product_rs = $c->model('FoodAppDB::Product')->search;
 	my %prods_hash;
 	while (my $product_row = $product_rs->next) {
-		my %product_item = (name		=> $product_row->name,
-							description => $product_row->description,
-							price		=> $product_row->price);
+		my %product_item = (name			=> $product_row->name,
+							description 	=> $product_row->description,
+							price			=> $product_row->price,
+							stock_qty		=> $product_row->stock_qty,
+							stock_threshold	=> $product_row->stock_threshold, );
 		push @products, \%product_item;
 	}
 	$prods_hash{'prods'} = \@products;
