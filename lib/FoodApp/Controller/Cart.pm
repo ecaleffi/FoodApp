@@ -122,8 +122,10 @@ sub default :Path {
 			## salvo l'array degli altri prodotti ordinati e lo inserisco come chiave
 			## di un altro array che ha come valore il numero di occorrenze di tale
 			## prodotto.
+			my $pnum = 0; # Variabile per contare il num di ordini con il prodotto corrente
 			foreach my $o (keys %order_hash) {
 				my @ord = @{ $order_hash{$o}};
+				$pnum++;
 				foreach my $item (@ord) {
 					$count_prod{$item}++;
 				}
@@ -136,8 +138,8 @@ sub default :Path {
 			
 			## Ora applico una soglia per scegliere i prodotti da visualizzare all'utente
 			foreach my $o (keys %count_prod) {
-				## Scelgo come soglia 2 (Si potrebbe anche mettere una percentuale sul numero di ordini in cui compare)
-				if ($count_prod{$o} >= 2) {
+				## Scelgo come soglia il 50% degli ordini in cui tale prodotto compare.
+				if ($count_prod{$o} > (0.5 * $pnum)) {
 					push @prod_selected, $o; 
 				}
 			}

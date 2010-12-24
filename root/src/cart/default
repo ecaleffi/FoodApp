@@ -131,35 +131,34 @@
 
 	<table cellspacing="10" cellpadding="10" width="700">
 		<tr><td colspan="2" align="center"><b>Chi ha ordinato questi prodotti, ha anche acquistato:</b></td></tr>
-		<tr align="center">
-			[% FOREACH val IN confidenza %]
-				
-				
-				
-					[% FOREACH prod IN item_array %]
-						[% trovato = 0 %]
-						[% IF val.name == prod %]
-							[% trovato = 1%]
-							[% BREAK %]
-						[% END %]
+		
+		[% FOREACH val IN confidenza %]
+			<tr align="center">
+				[% FOREACH prod IN item_array %]
+					[% trovato = 0 %]
+					[% IF val.name == prod %]
+						[% trovato = 1%]
+						[% BREAK %]
 					[% END %]
+				[% END %]
 						
-						[% IF trovato == 0%]
-						<td>
-							[% val.name %]
-						</td>
-						<td>
-					<form action="/cart/add/" method="POST">
-    					<input type="hidden" name="sku" value="[% val.name %]" />
-    					<input type="hidden" name="description" value="[% val.description %]" />
-    					<input type="hidden" name="price" value="[% val.price %]" />
-    					<input type="hidden" name="quantity" value="1" />
-    					<input type="submit" value="Aggiungi" />
-          			</form>
-          				</td>
-          				[% END %]
-			[% END %]
-		</tr>
+				[% IF trovato == 0%]
+					<td>
+						[% val.name %]
+					</td>
+					<td>
+						<form action="/cart/add/" method="POST">
+    						<input type="hidden" name="sku" value="[% val.name %]" />
+    						<input type="hidden" name="description" value="[% val.description %]" />
+    						<input type="hidden" name="price" value="[% val.price %]" />
+    						<input type="hidden" name="quantity" value="1" />
+    						<input type="submit" value="Aggiungi" />
+        	  			</form>
+        			</td>
+        		[% END %]
+         	</tr>
+		[% END %]
+		
 	</table>
 	[% END %]
 [% END %]
