@@ -39,21 +39,6 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 RELATIONS
 
-=head2 order
-
-Type: might_have
-
-Related object: L<FoodApp::Schema::Result::Order>
-
-=cut
-
-__PACKAGE__->might_have(
-  "order",
-  "FoodApp::Schema::Result::Order",
-  { "foreign.batch_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
 =head2 machine_products
 
 Type: has_many
@@ -85,8 +70,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-19 10:43:31
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:BtOO8xzqvwABU4gXPpiGZA
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-12-22 10:47:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:d8c1SkTAkywzYrJj7EnVoA
 
 __PACKAGE__->many_to_many(machines => 'machine_products', 'machine');
 

@@ -103,21 +103,6 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 RELATIONS
 
-=head2 orders
-
-Type: has_many
-
-Related object: L<FoodApp::Schema::Result::Order>
-
-=cut
-
-__PACKAGE__->has_many(
-  "orders",
-  "FoodApp::Schema::Result::Order",
-  { "foreign.user_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
 =head2 have_right_to
 
 Type: has_many
@@ -149,8 +134,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-12-10 12:29:58
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:9yAQsGIGgl0eYM2MSukJow
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-12-22 10:47:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:0RPkziqHF8eSSOcA2WBSwA
 
 __PACKAGE__->many_to_many(roles => 'have_right_to', 'role');
 

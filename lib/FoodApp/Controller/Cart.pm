@@ -67,6 +67,10 @@ sub default :Path {
     	my %recipes_hash = ();
     	
 		my @isect = ();
+		
+		
+		
+		my %hash_confidenza = ();
     	
     	## Prendo singolarmente ciascun item presente nel carrello
     	foreach my $prod ($cart->items) {
@@ -85,8 +89,89 @@ sub default :Path {
 				$c->log->debug($temp_recipe->recipe_id);
 				push @{ $recipes_hash {$res->name} }, $temp_recipe->recipe_id;	
 			}
+			
+			## Codice per fare il profiling in base agli ordini presenti nel database.
+			# Se un prodotto presente nel carrello ha un altro prodotto che spesso è 
+			# associato a lui negli ordini, allora lo visualizzo all'utente.
+			
+			## Hash per salvare le associazioni fra ordini e prodotti associati
+			my %order_hash = ();
+			
+			my $orders_item_rs = $c->model('FoodAppDB')->resultset('OrdersItem')->search( {item => $prod->sku} );
+			while ( my $orders_item = $orders_item_rs->next ) {
+				my $orders_rs = $c->model('FoodAppDB')->resultset('Order')->search( {id => $orders_item->order_id} );
+				while (my $order = $orders_rs->next) {
+					foreach my $o ($order->orders_items) {
+						if ($o->item ne $prod->sku) {
+							push @{	$order_hash {$order->id} }, $o->item;
+						}
+					}
+				}
+			}
+			## Alla fine del ciclo l'hash contiene l'associazione fra gli ordini che contengono
+			# il prodotto corrente presente nel carrello e gli altri prodotti che tale ordine contiene.
+
+			#Stampa di prova
+			$c->log->debug(Dumper (\\%order_hash));
+		
+			## Ora eseguo un conteggio degli altri prodotti presenti negli ordini
+			# attraverso un hash
+			my %count_prod = ();
+		
+			## Per ogni chiave nell'hash degli ordini contenenti il prodotto corrente
+			## salvo l'array degli altri prodotti ordinati e lo inserisco come chiave
+			## di un altro array che ha come valore il numero di occorrenze di tale
+			## prodotto.
+			foreach my $o (keys %order_hash) {
+				my @ord = @{ $order_hash{$o}};
+				foreach my $item (@ord) {
+					$count_prod{$item}++;
+				}
+			}
+			
+			#Stampa di prova
+			$c->log->debug(Dumper (\\%count_prod));
+			
+			my @prod_selected = ();
+			
+			## Ora applico una soglia per scegliere i prodotti da visualizzare all'utente
+			foreach my $o (keys %count_prod) {
+				## Scelgo come soglia 2 (Si potrebbe anche mettere una percentuale sul numero di ordini in cui compare)
+				if ($count_prod{$o} >= 2) {
+					push @prod_selected, $o; 
+				}
+			}
+			if (@prod_selected) {
+				push @{ $hash_confidenza{$prod->sku} }, @prod_selected; 
+			}
+			
+			$c->log->debug('Prodotti da visualizzare');
+			$c->log->debug(Dumper(@prod_selected));
+			
 												
-    	}
+    	} # Fine del ciclo sui prodotti presenti nel carrello
+    	
+    	$c->log->debug('Hash della confidenza');
+    	$c->log->debug(Dumper(\\%hash_confidenza));
+    	
+    	## Salvo nello stash i prodotti trovati
+    	my @list = ();
+    	foreach my $k (keys %hash_confidenza) {
+    		my @val = @{$hash_confidenza{$k}};
+    		foreach my $v (@val) {
+    			push @list, $c->model('FoodAppDB::Product')->find( { name => $v } );
+			}
+		}
+		foreach my $l (@list) {
+			$c->log->debug("***");
+			$c->log->debug($l->name);
+		}
+		if (@list) {
+			$c->stash( confidenza => [ @list ] );
+		}
+		
+		
+    	
     	## Stampa di prova
     	$c->log->debug(Dumper (\\%recipes_hash));    	
     	#$c->log->debug(Dumper(@products));

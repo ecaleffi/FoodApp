@@ -46,21 +46,6 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 RELATIONS
 
-=head2 orders
-
-Type: has_many
-
-Related object: L<FoodApp::Schema::Result::Order>
-
-=cut
-
-__PACKAGE__->has_many(
-  "orders",
-  "FoodApp::Schema::Result::Order",
-  { "foreign.recipe_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
 =head2 uses
 
 Type: has_many
@@ -77,8 +62,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-25 15:26:23
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:SU9HxF03aqepasDxkYDUIw
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-12-22 10:47:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:RJDSvRcZ0JNo5j6ew6yLEA
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

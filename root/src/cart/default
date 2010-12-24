@@ -2,7 +2,8 @@
 <h1>Il tuo Carrello</h1>
 [% INCLUDE cart/errors %]
 
-<table cellspacing="10" cellpadding="5">
+<table cellspacing="5" cellpadding="5">
+<tr>
 	<td>
 
 [% IF items.count %]
@@ -69,7 +70,7 @@
 
 [% IF recipes.size %]
 <td>
-	<table cellspacing="15" cellpadding="5">
+	<table cellspacing="10" cellpadding="0">
 		<tr>
 			<th colspan="2">Ricette consigliate in base ai prodotti presenti nel carrello</th>
 		</tr>
@@ -111,4 +112,55 @@
 	</table>
 </td>
 [% END %]
+</tr>
 </table>
+
+[% IF confidenza.size %]
+	[% # Potrebbe esserci un modo più efficiente, ma questo è l'unico che mi viene in mente %]
+	[% FOREACH val IN confidenza %]
+		[% FOREACH prod IN item_array %]
+			[% visualizza = 0 %]
+			[% IF val.name == prod %]
+				[% visualizza = 1%]
+				[% BREAK %]
+			[% END %]
+		[% END %]
+	[% END %]
+	
+	[% IF visualizza == 0 %]
+
+	<table cellspacing="10" cellpadding="10" width="700">
+		<tr><td colspan="2" align="center"><b>Chi ha ordinato questi prodotti, ha anche acquistato:</b></td></tr>
+		<tr align="center">
+			[% FOREACH val IN confidenza %]
+				
+				
+				
+					[% FOREACH prod IN item_array %]
+						[% trovato = 0 %]
+						[% IF val.name == prod %]
+							[% trovato = 1%]
+							[% BREAK %]
+						[% END %]
+					[% END %]
+						
+						[% IF trovato == 0%]
+						<td>
+							[% val.name %]
+						</td>
+						<td>
+					<form action="/cart/add/" method="POST">
+    					<input type="hidden" name="sku" value="[% val.name %]" />
+    					<input type="hidden" name="description" value="[% val.description %]" />
+    					<input type="hidden" name="price" value="[% val.price %]" />
+    					<input type="hidden" name="quantity" value="1" />
+    					<input type="submit" value="Aggiungi" />
+          			</form>
+          				</td>
+          				[% END %]
+			[% END %]
+		</tr>
+	</table>
+	[% END %]
+[% END %]
+

@@ -227,6 +227,16 @@ sub complete : Local {
     my $user = $c->user;
     $user->handel_orders->create({ order_number => $c->stash->{'order'}->id });
     
+    ## Creo un ordine per l'attività di profiling
+    my $order = $c->stash->{'order'};
+    
+    my $ord_db = $c->model('FoodAppDB::Order')->create( { number => $order->number } );
+    
+    # Inserisco l'associazione con i prodotti
+    foreach my $item ($order->items) {
+    	$ord_db->orders_items->create( { item => $item->sku } );
+    }
+    
     if (!$c->stash->{'order'}) {
         $c->res->redirect($c->uri_for('/checkout/'));
     };
