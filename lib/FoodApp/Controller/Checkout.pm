@@ -52,13 +52,22 @@ reason.
 
 sub default :Path {
     my ($self, $c) = @_;
-    $c->stash->{'template'} = 'checkout/default';
+    
+    if ( $c->user_exists() ) {
+    	$c->stash->{'template'} = 'checkout/default';
 
-    if ($c->forward('load')) {
-        $c->res->redirect($c->uri_for('/checkout/billing/'));
-    };
+    	if ($c->forward('load')) {
+        	$c->res->redirect($c->uri_for('/checkout/billing/'));
+    	};
 
-    return;
+    	return;
+    }
+    else {
+		## Se l'utente non è loggato, lo redirigo alla pagina di login
+		$c->stash->{'message'} = 'Per effettuare il checkout devi aver eseguito il login';
+		$c->detach('/people/login');
+		
+	}
 };
 
 =head2 billing
@@ -72,6 +81,7 @@ Loads/saves the billing and shipping information during GET/POST.
 sub billing : Local {
     my ($self, $c) = @_;
     $c->stash->{'template'} = 'checkout/billing';
+    $c->stash->{'user'} = $c->user;
 
     if (my $order = $c->forward('load')) {
         $c->stash->{'order'} = $order;

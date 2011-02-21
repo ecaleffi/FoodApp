@@ -3,6 +3,7 @@ CREATE TABLE user (
 	id				INTEGER PRIMARY KEY,
 	name 			char(32) NOT NULL,
 	surname			char(32) NOT NULL,
+	username		char(32) NOT NULL,
 	password		char(64) NOT NULL,
 	address			char(64),
 	city			char(32),
@@ -38,40 +39,61 @@ CREATE TABLE recipe (
 	description	TEXT
 );
 
+CREATE TABLE uses (
+	recipe_id	INTEGER REFERENCES recipe(id),
+	product_id	INTEGER REFERENCES product(id),
+	PRIMARY KEY (recipe_id, product_id)
+);
+
 CREATE TABLE product_batch (
 	id			INTEGER PRIMARY KEY
 );
 
 CREATE TABLE orders (
-	user_id		INTEGER REFERENCES user(id) ON DELETE CASCADE ON UPDATE CASCADE,
-	order_id	INTEGER REFERENCES table_order(id) ON DELETE CASCADE ON UPDATE CASCADE,
-	recipe_id	INTEGER REFERENCES recipe(id) ON DELETE CASCADE ON UPDATE CASCADE,
-	batch_id	INTEGER UNIQUE REFERENCES product_batch(id) ON DELETE CASCADE ON UPDATE CASCADE,
-	PRIMARY KEY (user_id, order_id)
+	id		INTEGER PRIMARY KEY,
+	number	varchar(20)
+);
+
+CREATE TABLE orders_item (
+	order_id	INTEGER REFERENCES orders(id),
+	item		CHAR(64),
+	PRIMARY KEY (order_id, item)
 );
 
 CREATE TABLE machine (
-	id				PRIMARY KEY,
+	id				INTEGER PRIMARY KEY,
 	name			char(32) NOT NULL,
 	address			char(64),
 	city			char(32),
 	province_state	char(32),
 	postal_code		char(10),
-	IP_address		char(16)
+	latitude		char(32),
+	longitude		char(32)
 );
 
 CREATE TABLE machine_product (
-	machine_id	INTEGER REFERENCES machine(id) ON DELETE CASCADE ON UPDATE CASCADE,
-	batch_id	INTEGER REFERENCES product_batch(id) ON DELETE CASCADE ON UPDATE CASCADE,
-	PRIMARY KEY (machine_id, batch_id)
+	id				INTEGER PRIMARY KEY,
+	name			char(32),
+	description		TEXT,
+	price			MONEY,
+	duration		DATE,
+	qty				INTEGER
+);
+
+CREATE TABLE product_contained (
+	machine_id	INTEGER REFERENCES machine(id),
+	product_id	INTEGER REFERENCES machine_product(id),
+	PRIMARY KEY (machine_id, product_id)
 );
 
 CREATE TABLE product (
-	id			INTEGER PRIMARY KEY,
-	name		char(64),
-	description	TEXT,
-	price		MONEY,
-	duration	DATE
+	id				INTEGER PRIMARY KEY,
+	name			char(64),
+	description		TEXT,
+	price			MONEY,
+	duration		DATE,
+	stock_qty		INTEGER,
+	stock_threshold	INTEGER
 );
 
 CREATE TABLE contains (

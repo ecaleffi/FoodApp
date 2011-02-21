@@ -25,7 +25,8 @@ __PACKAGE__->table("machine");
 
 =head2 id
 
-  data_type: (empty string)
+  data_type: 'integer'
+  is_auto_increment: 1
   is_nullable: 0
 
 =head2 name
@@ -58,17 +59,23 @@ __PACKAGE__->table("machine");
   is_nullable: 1
   size: 10
 
-=head2 ip_address
+=head2 latitude
 
   data_type: 'char'
   is_nullable: 1
-  size: 16
+  size: 32
+
+=head2 longitude
+
+  data_type: 'char'
+  is_nullable: 1
+  size: 32
 
 =cut
 
 __PACKAGE__->add_columns(
   "id",
-  { data_type => "", is_nullable => 0 },
+  { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
   "name",
   { data_type => "char", is_nullable => 0, size => 32 },
   "address",
@@ -79,31 +86,33 @@ __PACKAGE__->add_columns(
   { data_type => "char", is_nullable => 1, size => 32 },
   "postal_code",
   { data_type => "char", is_nullable => 1, size => 10 },
-  "ip_address",
-  { data_type => "char", is_nullable => 1, size => 16 },
+  "latitude",
+  { data_type => "char", is_nullable => 1, size => 32 },
+  "longitude",
+  { data_type => "char", is_nullable => 1, size => 32 },
 );
 __PACKAGE__->set_primary_key("id");
 
 =head1 RELATIONS
 
-=head2 machine_products
+=head2 products_contained
 
 Type: has_many
 
-Related object: L<FoodApp::Schema::Result::MachineProduct>
+Related object: L<FoodApp::Schema::Result::ProductContained>
 
 =cut
 
 __PACKAGE__->has_many(
-  "machine_products",
-  "FoodApp::Schema::Result::MachineProduct",
+  "products_contained",
+  "FoodApp::Schema::Result::ProductContained",
   { "foreign.machine_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-11-19 10:43:31
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:nSE7F9MXzp/SiX4KfJAKjw
+# Created by DBIx::Class::Schema::Loader v0.07006 @ 2011-02-16 10:48:09
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:U9r35vxl0MopR8GYskZMUg
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

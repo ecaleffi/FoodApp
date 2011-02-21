@@ -39,21 +39,6 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 RELATIONS
 
-=head2 machine_products
-
-Type: has_many
-
-Related object: L<FoodApp::Schema::Result::MachineProduct>
-
-=cut
-
-__PACKAGE__->has_many(
-  "machine_products",
-  "FoodApp::Schema::Result::MachineProduct",
-  { "foreign.batch_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
 =head2 contains
 
 Type: has_many
@@ -70,8 +55,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-12-22 10:47:40
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:d8c1SkTAkywzYrJj7EnVoA
+# Created by DBIx::Class::Schema::Loader v0.07006 @ 2011-02-16 10:48:09
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:8I8EqeOxnqFmkp45i3WbJw
 
 __PACKAGE__->many_to_many(machines => 'machine_products', 'machine');
 
