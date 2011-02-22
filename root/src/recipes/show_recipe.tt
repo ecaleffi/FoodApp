@@ -6,8 +6,6 @@
 		<th width="20"></th>
 		<th>Preparazione</th>
 	</tr>
-	[% # Visualizza ogni ricetta in una riga della tabella %]
-	[% WHILE (recipe = recipes_rs.next) %]
 	<tr>
 		<td>
 			[% recipe.description %]
@@ -25,13 +23,4 @@
 			[% recipe.preparation %]
 		</td>
 	</tr>
-	[% END %]
-	[% IF c.user_exists() && c.check_user_roles('admin') %]
-		<tr height="10"></tr>
-		<tr>
-			<td colspan="2">
-				<a href="[% c.uri_for('/recipe/form_create') %]">Crea una ricetta</a>
-			</td>
-		</tr>
-	[% END %]
 </table>

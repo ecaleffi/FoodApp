@@ -8,7 +8,7 @@
 		[% FOREACH product IN products -%]
 	<tr>
 		<td>[% product.name %]</td>
-		<td>[% product.description %]
+		<td width="500">[% product.description %]
 			[% IF c.user_exists() && c.check_user_roles('admin') %]
 				[% IF product.stock_qty < product.stock_threshold %]
 					<p><font color="red"> *scorta in esaurimento </font></p>

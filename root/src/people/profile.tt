@@ -34,6 +34,10 @@
 			</li>
 			<br/>
 			<li>
+				<b>Email:</b>		[% user.email %]
+			</li>
+			<br/>
+			<li>
 				<b>I miei ordini: </b> <ul>
 					[% FOREACH order = user.handel_orders %]
 						<li><a href="[% c.uri_for(('/order/view'), order.order_number) %]">[% order.order_number %]</a></li>

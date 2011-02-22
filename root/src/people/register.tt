@@ -39,6 +39,10 @@
 				<td><input type="text" name="post_code" value="" id="post_code"/></td>
 			</tr>
 			<tr>
+				<td><label for"email">Email:</label></td>
+				<td><input type="text" name="email" value="" id="email""/></td>
+			</tr>
+			<tr>
 				<td><p><input type="submit" value="Registrati &rarr;"></p></td>
 			</tr>
 		</table>

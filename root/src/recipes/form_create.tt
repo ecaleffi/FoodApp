@@ -77,6 +77,12 @@ function setNumProd(numProd) {
 			</tr>
 		</tbody>
 		<tr>
+			<td>Preparazione:</td>
+			<td>
+				<textarea name="preparation" rows="10" cols="20">Inserisci qui la preparazione della ricetta</textarea>
+			</td>
+		</tr>
+		<tr>
 			<td>
 				<input type="hidden" name="numProd" value=''>
 				<input type="submit" name="Submit" value="Crea Ricetta" onclick="setNumProd(numProd)">

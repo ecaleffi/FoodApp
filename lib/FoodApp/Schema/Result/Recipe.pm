@@ -34,12 +34,19 @@ __PACKAGE__->table("recipe");
   data_type: 'text'
   is_nullable: 1
 
+=head2 preparation
+
+  data_type: 'text'
+  is_nullable: 1
+
 =cut
 
 __PACKAGE__->add_columns(
   "id",
   { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
   "description",
+  { data_type => "text", is_nullable => 1 },
+  "preparation",
   { data_type => "text", is_nullable => 1 },
 );
 __PACKAGE__->set_primary_key("id");
@@ -62,8 +69,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-12-22 10:47:40
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:RJDSvRcZ0JNo5j6ew6yLEA
+# Created by DBIx::Class::Schema::Loader v0.07006 @ 2011-02-22 10:48:45
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:k5jLUBhkaCzC+H2IyRMWxA
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

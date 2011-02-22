@@ -68,27 +68,27 @@
         </tr>
         <tr>
             <td align="right">Nome:</td>
-            <td align="left"><input type="text" name="billtofirstname" id="billname" value="[% HTML.escape(order.billtofirstname) %]" tabindex="1"></td>
+            <td align="left"><input type="text" name="billtofirstname" id="billname" value="[% c.user.name %]" tabindex="1"></td>
             <td></td>
             <td align="right">Nome:</td>
-            <td align="left"><input type="text" name="shiptofirstname" value="[% HTML.escape(order.shiptofirstname) %]" tabindex="14"></td>
+            <td align="left"><input type="text" name="shiptofirstname" value="[% c.user.name %]" tabindex="14"></td>
         </tr>
         <tr>
             <td align="right">Cognome:</td>
-            <td align="left"><input type="text" name="billtolastname" id="billlastname" value="[% HTML.escape(order.billtolastname) %]" tabindex="2"></td>
+            <td align="left"><input type="text" name="billtolastname" id="billlastname" value="[% c.user.surname %]" tabindex="2"></td>
             <td></td>
             <td align="right">Cognome:</td>
-            <td align="left"><input type="text" name="shiptolastname" value="[% HTML.escape(order.shiptolastname) %]" tabindex="15"></td>
+            <td align="left"><input type="text" name="shiptolastname" value="[% c.user.surname %]" tabindex="15"></td>
         </tr>
         <tr>
             <td colspan="5" height="5">&nbsp;</td>
         </tr>
         <tr>
             <td align="right">Indirizzo:</td>
-            <td align="left"><input type="text" name="billtoaddress1" id="billaddress1" value="[% HTML.escape(order.billtoaddress1) %]" tabindex="3"></td>
+            <td align="left"><input type="text" name="billtoaddress1" id="billaddress1" value="[% c.user.address %]" tabindex="3"></td>
             <td></td>
             <td align="right">Indirizzo:</td>
-            <td align="left"><input type="text" name="shiptoaddress1" value="[% HTML.escape(order.shiptoaddress1) %]" tabindex="16"></td>
+            <td align="left"><input type="text" name="shiptoaddress1" value="[% c.user.address %]" tabindex="16"></td>
         </tr>
         <tr>
             <td align="right"></td>
@@ -106,31 +106,31 @@
         </tr>
         <tr>
             <td align="right">Città:</td>
-            <td align="left"><input type="text" name="billtocity" id="billcity" value="[% HTML.escape(order.billtocity) %]" tabindex="6"></td>
+            <td align="left"><input type="text" name="billtocity" id="billcity" value="[% c.user.city %]" tabindex="6"></td>
             <td></td>
             <td align="right">Città:</td>
-            <td align="left"><input type="text" name="shiptocity" value="[% HTML.escape(order.shiptocity) %]" tabindex="19"></td>
+            <td align="left"><input type="text" name="shiptocity" value="[% c.user.city %]" tabindex="19"></td>
         </tr>
         <tr>
             <td align="right">Regione:</td>
-            <td align="left"><input type="text" name="billtostate" id="billstate" value="[% HTML.escape(order.billtostate) %]" tabindex="7"></td>
+            <td align="left"><input type="text" name="billtostate" id="billstate" value="[% c.user.province_state %]" tabindex="7"></td>
             <td></td>
             <td align="right">Regione:</td>
-            <td align="left"><input type="text" name="shiptostate" value="[% HTML.escape(order.shiptostate) %]" tabindex="20"></td>
+            <td align="left"><input type="text" name="shiptostate" value="[% c.user.province_state %]" tabindex="20"></td>
         </tr>
         <tr>
             <td align="right">CAP:</td>
-            <td align="left"><input type="text" name="billtozip" id="billzip" value="[% HTML.escape(order.billtozip) %]" tabindex="8"></td>
+            <td align="left"><input type="text" name="billtozip" id="billzip" value="[% c.user.postal_code %]" tabindex="8"></td>
             <td></td>
             <td align="right">CAP:</td>
-            <td align="left"><input type="text" name="shiptozip" value="[% HTML.escape(order.shiptozip) %]" tabindex="21"></td>
+            <td align="left"><input type="text" name="shiptozip" value="[% c.user.postal_code %]" tabindex="21"></td>
         </tr>
         <tr>
             <td align="right">Stato:</td>
-            <td align="left"><input type="text" name="billtocountry" id="billcountry" value="[% HTML.escape(order.billtocountry) %]" tabindex="9"></td>
+            <td align="left"><input type="text" name="billtocountry" id="billcountry" value="Italia" tabindex="9"></td>
             <td></td>
             <td align="right">Stato:</td>
-            <td align="left"><input type="text" name="shiptocountry" value="[% HTML.escape(order.shiptocountry) %]" tabindex="22"></td>
+            <td align="left"><input type="text" name="shiptocountry" value="Italia" tabindex="22"></td>
         </tr>
         <tr>
             <td align="right">Telefono Diurno:</td>
@@ -155,10 +155,10 @@
         </tr>
         <tr>
             <td align="right">Email:</td>
-            <td align="left"><input type="text" name="billtoemail" id="billemail" value="[% HTML.escape(order.billtoemail) %]" tabindex="13"></td>
+            <td align="left"><input type="text" name="billtoemail" id="billemail" value="[% c.user.email %]" tabindex="13"></td>
             <td></td>
             <td align="right">Email:</td>
-            <td align="left"><input type="text" name="shiptoemail" value="[% HTML.escape(order.shiptoemail) %]" tabindex="26"></td>
+            <td align="left"><input type="text" name="shiptoemail" value="[% c.user.email %]" tabindex="26"></td>
         </tr>
         <tr>
             <td colspan="5" height="10">&nbsp;</td>

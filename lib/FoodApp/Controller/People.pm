@@ -47,6 +47,8 @@ sub login :Local :Args(0) {
 		{
 			## l'utente ha eseguito il login
 			$c->stash->{'message'} = "Hai effettuato il login con successo.";
+			## Setto un cookie per inserire l'id dell'utente
+			#$c->response->cookies->{user_id} = {value => $c->user->id};
 			$c->response->redirect(
 				$c->uri_for($c->controller('Product')->action_for(
 'list') )
@@ -139,8 +141,9 @@ sub register :Chained('base') :PathPart('register') :Args(0) {
 			password		=> $params->{password},
 			address			=> $params->{address},
 			city			=> $params->{city},
-			province_state	=> $params->{state},
+			province_state		=> $params->{state},
 			postal_code		=> $params->{post_code},
+			email			=> $params->{email},
 		});
 		
 		## Assegno il ruolo 'user' come defalut di ogni utente creato

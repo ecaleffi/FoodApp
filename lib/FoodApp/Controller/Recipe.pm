@@ -49,6 +49,7 @@ sub form_create :Local {
 			# Creo la ricetta
 			my $recipe = $c->model('FoodAppDB::Recipe')->create({
 				description	=> $params->{description},
+				preparation	=> $params->{preparation},
 			});
 			
 			# Variabile che contiene il numero di prodotti inseriti
@@ -115,6 +116,32 @@ sub list :Chained('base') :PathPart('list') :Args(0) {
 		return $c->res->redirect( $c->uri_for(
 			$c->controller('People')->action_for('login'),
 			{status_msg => "Solo effettuando il login potrai visualizzare questo contenuto."} ) );
+	}
+}
+
+sub recipe : Chained('base'): PathPart(''): CaptureArgs(1) {
+	my ($self, $c, $recipeid) = @_;
+	if ($recipeid =~ /\D/) {
+		die "Errore nell'URL, recipeid non contiene solo cifre!";
+	}
+	
+	my $recipe = $c->stash->{recipes_rs}->find({ id => $recipeid},
+										   { key => 'primary'});
+										   
+	die "Ricetta non presente" if(!$recipe);
+	
+	$c->stash(recipe => $recipe);
+}
+
+sub show_recipe : Chained('recipe') :PathPart('show_recipe') :Args(0) {
+	my ($self, $c) = @_;
+
+	$c->stash->{'template'} = 'recipes/show_recipe.tt';
+
+	if (! $c->user_exists()) {
+		return $c->res->redirect( $c->uri_for( 
+			$c->controller('people')->action_for('login'),
+			{status_msg => "Devi avere eseguito il login per visualizzare questo contenuto."} ) );
 	}
 }
 

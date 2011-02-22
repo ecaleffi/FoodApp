@@ -77,6 +77,12 @@ __PACKAGE__->table("user");
   is_nullable: 1
   size: 10
 
+=head2 email
+
+  data_type: 'char'
+  is_nullable: 1
+  size: 64
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -98,6 +104,8 @@ __PACKAGE__->add_columns(
   { data_type => "char", is_nullable => 1, size => 32 },
   "postal_code",
   { data_type => "char", is_nullable => 1, size => 10 },
+  "email",
+  { data_type => "char", is_nullable => 1, size => 64 },
 );
 __PACKAGE__->set_primary_key("id");
 
@@ -134,8 +142,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-12-22 10:47:40
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:0RPkziqHF8eSSOcA2WBSwA
+# Created by DBIx::Class::Schema::Loader v0.07006 @ 2011-02-22 11:47:01
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:+z0arzdsnxXxLNM+ruoOLQ
 
 __PACKAGE__->many_to_many(roles => 'have_right_to', 'role');
 
