@@ -18,7 +18,7 @@
         </tr>
         <tr>
             <td align="right">Ordine Creato:</td>
-            <td align="left">[% HTML.escape(order.updated.set_locale("it_IT").strftime("%d %B %Y %H:%M:%S")) %]</td>
+            <td align="left">[% HTML.escape(order.updated.set_time_zone('Europe/Rome').set_locale("it_IT").strftime("%d %B %Y %H:%M:%S")) %]</td>
             <td colspan="3"></td>
         </tr>
         <tr>

@@ -1,5 +1,5 @@
 <table cellspacing="10">
-	<tr><th>Nome</th><th>Descrizione</th><th>Prezzo (€/Kg)</th><th>Scadenza</th><th>Links</th>
+	<tr><th>Nome</th><th>Descrizione</th><th>Prezzo</th><th>Scadenza</th><th>Links</th>
 	[% IF c.user_exists() && c.check_user_roles('admin') %]
 		<th>Elimina</th>
 	[% END %]

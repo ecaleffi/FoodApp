@@ -5,7 +5,7 @@
     <table border="0" cellpadding="3" cellspacing="5">
         <tr>
             <td align="right">Nome sulla Carta di Credito:</td>
-            <td align="left"><input type="text" name="ccname" value=""></td>
+            <td align="left"><input type="text" name="ccname" value="[% c.user.name %] [% c.user.surname %]"></td>
         </tr>
         <tr>
             <td align="right">Tipo Carta di Credito:</td>
