@@ -1,0 +1,23 @@
+<script language="JavaScript" type="text/javascript">
+</script>
+<form action="[% c.uri_for('/maps/view') %]" method="post">
+
+	<table cellspacing="15">
+		<th>Seleziona i prodotti da cercare</th>
+		[% FOREACH prod IN prods %]
+			<tr>
+				<td>
+					<input type="checkbox" name="check" value="[% prod.name %]" />
+						[% prod.name %]
+				</td>
+			</tr>
+		[% END %]
+		<tr><td></td></tr>
+		<tr>
+			<td>
+				<input type="submit" value="Cerca &rarr;" />
+			</td>
+		</tr>
+	</table>
+
+</form>

@@ -3,7 +3,7 @@
 <head>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <script type="text/javascript"
-    src="http://maps.google.com/maps/api/js?sensor=false">
+    src="http://maps.google.it/maps/api/js?sensor=false">
 </script>
 <script type="text/javascript">
 	var directionsDisplay;
@@ -12,7 +12,7 @@
 	
   function initialize() {
   	directionsDisplay = new google.maps.DirectionsRenderer();
-    var map_center = new google.maps.LatLng([% point1 %]);
+    var map_center = new google.maps.LatLng([% start %]);
     var myOptions = {
       zoom: 13,
       center: map_center,
@@ -21,11 +21,12 @@
     map = new google.maps.Map(document.getElementById("map_canvas"),
         myOptions);
     directionsDisplay.setMap(map);
+    
   }
   
   function calcRoute() {
-  	var start = new google.maps.LatLng([% point1 %]);
-  	var end = new google.maps.LatLng([% point2 %]);
+  	var start = new google.maps.LatLng([% start %]);
+  	var end = new google.maps.LatLng([% end %]);
   	var request = {
   		origin:start,
   		destination:end,
@@ -37,7 +38,7 @@
   		}
   	});
   }
-
+  
 </script>
 </head>
 <body onload="initialize(), calcRoute()">

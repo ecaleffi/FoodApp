@@ -36,6 +36,9 @@
 					[% IF c.user_exists() %]
 						<li><a href="[% c.uri_for('/recipe/list') %]">Ricette</a></li>
 					[% END %]
+					[% IF c.user_exists() %]
+						<li><a href="[% c.uri_for('/maps/select_prods') %]">Distributori</a></li>
+					[% END %]
 					[% IF c.session.shopper %]
 						<li><a href="[% c.uri_for('/cart') %]">Carrello</a></li>
 					[% END %]
